@@ -23,6 +23,57 @@
     <!-- Custom styles for this template -->
     <link href="css/landing-page.min.css" rel="stylesheet">
 
+  <style>
+    .card {
+    font-size: 1em;
+    overflow: hidden;
+    padding: 0;
+    border: none;
+    border-radius: .28571429rem;
+    box-shadow: 0 1px 3px 0 #d4d4d5, 0 0 0 1px #d4d4d5;
+}
+
+.card-block {
+    font-size: 1em;
+    position: relative;
+    margin: 0;
+    padding: 1em;
+    border: none;
+    border-top: 1px solid rgba(34, 36, 38, .1);
+    box-shadow: none;
+}
+
+.card-img-top {
+    display: block;
+    width: 100%;
+    height: auto;
+}
+
+.card-title {
+    font-size: 1.28571429em;
+    font-weight: 700;
+    line-height: 1.2857em;
+}
+
+.card-text {
+    clear: both;
+    margin-top: .5em;
+    color: rgba(0, 0, 0, .68);
+}
+
+.card-footer {
+    font-size: 1em;
+    position: static;
+    top: 0;
+    left: 0;
+    max-width: 100%;
+    padding: .75em 1em;
+    color: rgba(0, 0, 0, .4);
+    border-top: 1px solid rgba(0, 0, 0, .05) !important;
+    background: #fff;
+}
+  </style>
+
   </head>
 
   <body>
@@ -225,6 +276,25 @@
                 </div>
           </div>
           
+           <div class="col-sm-6 col-md-4 col-lg-3 mt-4">
+                <div class="card">
+                    <img class="card-img-top" src="http://www.bestofsampleresume.com/wp-content/uploads/2016/05/human-resource-manager-resume.jpg">
+                    <div class="card-block">
+                        <h4 class="card-title">Derek Morgan</h4>
+                        <div class="meta">
+                            <a href="#">Employee</a>
+                        </div>
+                        <div class="card-text">
+                            Derek is the head of HR.
+                        </div>
+                    </div>
+                    <div class="card-footer">
+                        <span class="float-right">Joined in 2006</span>
+                        <span><i class=""></i>Graduate of NYU</span>
+                    </div>
+                </div>
+          </div>
+          
           
         </div>
       </div>
@@ -259,7 +329,7 @@
     <div class="row">
       <div class="col-sm-5">
         <p>Contact us and we'll get back to you within 24 hours.</p>
-        <p><span class="glyphicon glyphicon-map-marker"></span> Chicago, US</p>
+        <p><span class="glyphicon glyphicon-map-marker"></span> 1000 West Fulton Street & 320 North Morgan Street, Chicago, IL 60607, US</p>
         <p><span class="glyphicon glyphicon-phone"></span> +00 1515151515</p>
         <p><span class="glyphicon glyphicon-envelope"></span> myemail@something.com</p>
     </div>
@@ -333,8 +403,8 @@
   <div id="googleMap" style="height:400px;width:100%;"></div>
   <script>
     function myMap() {
-    var myCenter = new google.maps.LatLng(41.878114, -87.629798);
-    var mapProp = {center:myCenter, zoom:12, scrollwheel:false, draggable:false, mapTypeId:google.maps.MapTypeId.ROADMAP};
+    var myCenter = new google.maps.LatLng(41.886758, -87.652170);
+    var mapProp = {center:myCenter, zoom:15, scrollwheel:false, draggable:false, mapTypeId:google.maps.MapTypeId.ROADMAP};
     var map = new google.maps.Map(document.getElementById("googleMap"),mapProp);
     var marker = new google.maps.Marker({position:myCenter});
     marker.setMap(map);
