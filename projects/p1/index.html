@@ -168,28 +168,28 @@
       <div class="container">
         <h2 class="mb-5">What people are saying...</h2>
         <div class="row">
-          <div class="col-lg-4">
-            <div class="testimonial-item mx-auto mb-5 mb-lg-0">
-              <img class="img-fluid rounded-circle mb-3" src="img/testimonials-1.jpg" alt="">
-              <h5>Margaret E.</h5>
-              <p class="font-weight-light mb-0">"This is fantastic! Thanks so much guys!"</p>
+          <div class="col-sm-6 col-md-4 col-lg-3 mt-4">
+                <div class="card">
+                    <img class="card-img-top" src="http://www.hillockshotel.com/shared/plugin/api/resize/timthumb.php?src=http://www.hillockshotel.com/filelibrary/2492016147468270918591.png&w=1300">
+                    <div class="card-block">
+                        <h4 class="card-title">Michael Kramer</h4>
+                        <div class="meta">
+                            <a href="#">Co-Workers</a>
+                        </div>
+                        <div class="card-text">
+                            Michael is a business anaylst at our company.
+                        </div>
+                    </div>
+                    <div class="card-footer">
+                        <span class="float-right">Joined in 2013</span>
+                        <span><i class=""></i>75 Co-Workers</span>
+                    </div>
+                </div>
             </div>
-          </div>
-          <div class="col-lg-4">
-            <div class="testimonial-item mx-auto mb-5 mb-lg-0">
-              <img class="img-fluid rounded-circle mb-3" src="img/testimonials-2.jpg" alt="">
-              <h5>Fred S.</h5>
-              <p class="font-weight-light mb-0">"Bootstrap is amazing. I've been using it to create lots of super nice landing pages."</p>
-            </div>
-          </div>
-          <div class="col-lg-4">
-            <div class="testimonial-item mx-auto mb-5 mb-lg-0">
-              <img class="img-fluid rounded-circle mb-3" src="img/testimonials-3.jpg" alt="">
-              <h5>Sarah	W.</h5>
-              <p class="font-weight-light mb-0">"Thanks so much for making these free resources available to us!"</p>
-            </div>
-          </div>
+            
+            
         </div>
+        
       </div>
     </section>
 
@@ -292,6 +292,21 @@
         </div>
       </div>
     </footer>
+    <!-- Add Google Maps -->
+  <div id="googleMap" style="height:400px;width:100%;"></div>
+  <script>
+    function myMap() {
+    var myCenter = new google.maps.LatLng(41.878114, -87.629798);
+    var mapProp = {center:myCenter, zoom:12, scrollwheel:false, draggable:false, mapTypeId:google.maps.MapTypeId.ROADMAP};
+    var map = new google.maps.Map(document.getElementById("googleMap"),mapProp);
+    var marker = new google.maps.Marker({position:myCenter});
+    marker.setMap(map);
+    }
+  </script>
+  
+  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBQyLGwnCtIk4or4ZAllJ2XOzHNAYD5Aio&callback=myMap"></script>
+
+
 
     <!-- Bootstrap core JavaScript -->
     <script src="vendor/jquery/jquery.min.js"></script>
