@@ -1,49 +1,67 @@
 <html>
     <head>
         <title>Weather</title>
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-
-
+    </head>
 <body>
     
-<div class="container" id="home"></div>
+<div class="container" id="home">
+    <p>Please Enter your zipcode for the weather</p>
+</div>
  <div class="container" id="search">
-            <input type = "text"  id = "#query" placeholder="Enter a Zip Code"/>
-                <button id = "btn">Submit</button>
+        <input type = "text"  id = "query" placeholder="Enter a Zip Code"/>
+        <button id = "btn">Submit</button>
     </div>
  
- <div class="container" id="results">
- </div>     
+ <div id="results"></div>     
         
 
 <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
+
 
 <script type="text/javascript" src=""></script>
 <script>
-$(function(){
-    $('#btn').on('click',function(){
-        var queryURL ="https://query.yahooapis.com/v1/public/yql?q=select%20*%20from%20weather.forecast%20where%20woeid%20in%20(select%20woeid%20from%20geo.places(1)%20where%20text%3D%22nome%2C%20ak%22" + $("#query").val() + "%22)&format=json&env=store%3A%2F%2Fdatatables.org%2Falltableswithkeys";
-        $.getJSON(queryURL,function(data){
+
+    //$(function(){
+       // $('#btn').on('click',function(){
+        //var queryURL ="https://query.yahooapis.com/v1/public/yql?q=select%20*%20from%20weather.forecast%20where%20woeid%20in%20(select%20woeid%20from%20geo.places(1)%20where%20text%3D%22nome%2C%20ak%22" +$("#query").val()+ "%22)&format=json&env=store%3A%2F%2Fdatatables.org%2Falltableswithkeys";
+        //$.getJSON(queryURL,function(data){
             
-        var results=data.query.results;
-        var firsResult=results.channel.item.condition;
-        var secResult=results.channel.location;
-        console.log(firsResult);
+        //var results=data.query.results;
+        //var firsResult=results.channel.item.condition;
+        //var secResult=results.channel.location;
+        //console.log(firsResult);
         
-        var loc=secResult.city;
-        var temp=firsResult.temp;
-        var forcast=firsResult.text;
+        //var loc=secResult.city;
+        //var temp=firsResult.temp;
+        //var forcast=firsResult.text;
         
-        $("#result").append('The weather is '+temp+' in '+ loc+ '. Forecast calls for '+forcast);
+        //$('#results').append('The weather is '+temp+' in '+ loc+ '. Forecast calls for '+forcast);
         
-        });
+        
+        //});
+    //});
+
+//});
+ var url = "https://query.yahooapis.com/v1/public/yql?q=select%20*%20from%20weather.forecast%20where%20woeid%20in%20(select%20woeid%20from%20geo.places(1)%20where%20text%3D%22<zip goes here>%22)&format=json&env=store%3A%2F%2Fdatatables.org%2Falltableswithkeys"
+  
+    
+    $("#btnGetWeather").on("click", function() {
+      $.get (
+        url.replace("<zip goes here>", $("#zip").val())
+        )
+        .done(function(response) {
+          console.log(response);
+          $("#results").text("");
+          
+          $("#results").append("<h1>" + response.query.results.channel.title + "</h1>");
+          $.each(response.query.results.channel.item.forecast, function(i,v) {
+              $("#results").append("<br>" + v.date + ": " + v.text);
+          })
+        })     
     });
     
- });
-    
-    </script>
+</script>
 
  
 </body>

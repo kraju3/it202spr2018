@@ -13,5 +13,18 @@
             <button type="button" id = "search">Search</button>
         <div class="container" id="search"></div>
         
-        
+    <script>
+    var url = "https://api.nytimes.com/svc/movies/v2/reviews/search.json";
+    url += '?' + $.param({
+  'api-key': "5a5cd0feba99447588e3ff873091db02"
+    });
+    $.ajax({
+  url: url,
+  method: 'GET',
+    }).done(function(result) {
+     console.log(result);
+    }).fail(function(err) {
+    throw err;
+});
+    </script>
     </body>
