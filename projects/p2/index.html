@@ -1,12 +1,6 @@
 <!DOCTYPE html>
 <html>
     <style>
-    
-         body {
-          width: 100%;
-          height: 100vh;
-          margin: 0px;
-        }
         .pg1 {
               background: #111;
               height: 100%;
@@ -25,18 +19,21 @@
               background: #111;
               height: 100%;
               width: 100%;
+
         }
-         .page3 {
-              background: #111;
-              height: 100%;
-              width: 100%;
+    
+         body {
+          width: 100%;
+          height: 100vh;
+          margin: 0px;
         }
-        .informationBox {
+        
+        .infobox {
             width: 450px;
             height: 250px;
             background-color:rgba(255,255,255,.6);
             border-radius: 25px;
- /*           border:2px solid black;*/
+
         
             position: absolute;
             top:0;
@@ -47,10 +44,10 @@
             margin: auto;
             box-shadow: 0 19px 38px rgba(0,0,0,0.30), 0 15px 12px rgba(0,0,0,0.22);
         }
-        .informationBox > h2 {
+        .infobox > h2 {
             text-align:center
         }
-        .informationBox > p {
+        .infobox > p {
             color : black;
             padding: 10px;
         }
@@ -63,7 +60,6 @@
             height: 250px;
             background-color:rgba(255,255,255,.6);
             border-radius: 25px;
- /*           border:2px solid black;*/
         
             position: absolute;
             top:0;
@@ -82,7 +78,7 @@
             padding-top: 10px;
             padding-left: 10px;
             padding-right: 10px;
-      /*      padding: 10px;*/
+      
         }
         .infobox2 > button {
             float: right;
@@ -92,7 +88,7 @@
             height: 100%;
         }
         
-      }
+      
       .hero .mdc-menu {
         z-index: 3;
       }
@@ -152,11 +148,13 @@
       }
     </style>
     <head>
-        <title>Material Components for the web</title>
+        <meta charset="utf-8">
+        <title>Schools in Chicago</title>
         <link rel="stylesheet"
           href="node_modules/material-components-web/dist/material-components-web.css">
         <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
         <title> </title>
+        <link rel="stylesheet" href="/assets/menu.css">
     </head>
     
     <header class="mdc-toolbar" id="the-toolbar">
@@ -181,7 +179,7 @@
             <nav class="mdc-drawer__drawer">
                 <header class="mdc-drawer__header">
                     <div class="mdc-drawer__header-content mdc-theme--text-primary-on-primary mdc-theme--primary-bg">
-                    Different type of schools
+                    Schools 
                     </div>
                 </header>
             <nav class="mdc-drawer__content mdc-list-group">
@@ -204,17 +202,19 @@
             </div>
         </div>
         <div class="pg2">
-        <div class="page2">    
+           
             <div class="infobox2" >
             <h2 class="mdc-typography--title">
-              School Type Selection
+              Schools
             </h2>
-            <p class="mdc-typography--body1">Please select the school types that you want to have displayed below and press show map
+            <p class="mdc-typography--body1">Please select the school type and Click "show" to display it on a separate page
             </p>
+            <br/>
+            
             <div class="mdc-menu-anchor" style="top: 50px; left: 0px;">
-            <button id="menu-btn" class="material-icons mdc-button \ demo-button--normal">
-              menu
-            </button>
+             <button id="menu-button" class="mdc-button mdc-button--raised demo-button demo-button--normal">
+              Show<span class="demo-button__normal-text"> Menu</span><span class="demo-button__long-text"> From Here Now!</span>
+                </button>
 
             <div class="mdc-menu" style="position: absolute; transform-origin: center top 0px; left: 0px; top: 0px;" tabindex="-1" id="demo-menu">
                 <ul class="mdc-menu__items mdc-list" role="menu" aria-hidden="true">
