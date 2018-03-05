@@ -26,6 +26,123 @@
               height: 100%;
               width: 100%;
         }
+         .page3 {
+              background: #111;
+              height: 100%;
+              width: 100%;
+        }
+        .informationBox {
+            width: 450px;
+            height: 250px;
+            background-color:rgba(255,255,255,.6);
+            border-radius: 25px;
+ /*           border:2px solid black;*/
+        
+            position: absolute;
+            top:0;
+            bottom: 0;
+            left: 0;
+            right: 0;
+        
+            margin: auto;
+            box-shadow: 0 19px 38px rgba(0,0,0,0.30), 0 15px 12px rgba(0,0,0,0.22);
+        }
+        .informationBox > h2 {
+            text-align:center
+        }
+        .informationBox > p {
+            color : black;
+            padding: 10px;
+        }
+        .infobox > button {
+            float: right;
+            margin-right:15px;
+        }
+        .infobox2 {
+            width: 450px;
+            height: 250px;
+            background-color:rgba(255,255,255,.6);
+            border-radius: 25px;
+ /*           border:2px solid black;*/
+        
+            position: absolute;
+            top:0;
+            bottom: 0;
+            left: 0;
+            right: 0;
+        
+            margin: auto;
+            box-shadow: 0 19px 38px rgba(0,0,0,0.30), 0 15px 12px rgba(0,0,0,0.22);
+        }
+        .infobox2 > h2 {
+            text-align:center
+        }
+        .infobox2 > p {
+            color : black;
+            padding-top: 10px;
+            padding-left: 10px;
+            padding-right: 10px;
+      /*      padding: 10px;*/
+        }
+        .infobox2 > button {
+            float: right;
+            margin-right:15px;
+        }
+        #map {
+            height: 100%;
+        }
+        
+      }
+      .hero .mdc-menu {
+        z-index: 3;
+      }
+      .demo-content {
+        position: relative;
+        top: 64px;
+      }
+      .demo-controls-container {
+        width: 100%;
+        height: calc(100vh - 80px);
+      }
+      .demo-controls {
+        margin-left: auto;
+        margin-right: auto;
+        width: 360px;
+      }
+      .mdc-menu-anchor {
+        position: absolute;
+        margin: 16px;
+      }
+      .margin-inputs input {
+        width: 2em;
+      }
+      .left-column-controls {
+         display: inline-block;
+         vertical-align: top;
+      }
+      .right-column-controls {
+        display: inline-block;
+        margin-left: 2em;
+        vertical-align: top;
+      }
+      .demo-button__normal-text,
+      .demo-button__long-text {
+        display: none;
+      }
+      .demo-button--normal .demo-button__normal-text,
+      .demo-button--long .demo-button__normal-text,
+      .demo-button--long .demo-button__long-text {
+        display: inline;
+      }
+      .demo-menu__long-items,
+      .demo-menu__extra-long-items {
+        display: none;
+      }
+      .demo-menu--long .demo-menu__long-items,
+      .demo-menu--extra-long .demo-menu__long-items,
+      .demo-menu--extra-long .demo-menu__extra-long-items {
+        display: inline;
+      }
     
     html,
       body,
@@ -95,7 +212,7 @@
             <p class="mdc-typography--body1">Please select the school types that you want to have displayed below and press show map
             </p>
             <div class="mdc-menu-anchor" style="top: 50px; left: 0px;">
-            <button id="menu-button" class="material-icons mdc-button \ demo-button--normal">
+            <button id="menu-btn" class="material-icons mdc-button \ demo-button--normal">
               menu
             </button>
 
@@ -238,25 +355,24 @@
                         .done(function(response) {
                             console.log(response);
                         $.each(response, function(i, v) {
-                            var contentString = '<div id="content">'+
+                            var infoStrng = '<div id="content">'+
                                 '<div id="siteNotice">'+
                                 '</div>'+
                                 v.long_name + '</h1>'+
                                 '<div id="bodyContent">'+
-                                '<p>School administrator: ' +  v.administrator +
+                                
                                 '<br />School Phone: ' + v.phone + ' Fax: ' + v.fax +
                                 '<br />Address: ' + v.address +
-                                '<br />School hours: ' + v.school_hours +
-                                '<br />Graduation rate: ' + v.graduation_rate_mean + '%' +
+                                
                                 '</p>'+
                                 '</div>'+
                                 '</div>';
                             console.log(v.school_longitude);
                             console.log(v.long_name);
                             var infowindow = new google.maps.InfoWindow({
-                              content: contentString
+                              content: infoStrng
                             });
-                            var image = 'markers/m1.ico';
+                            var image = 'markers/m1.svg';
                             var mymarker = new google.maps.Marker({
                               position: {lat: parseFloat(v.school_latitude), lng: parseFloat(v.school_longitude)},
                               map: mymap,
@@ -279,25 +395,24 @@
                         .done(function(response) {
                             console.log(response);
                         $.each(response, function(i, v) {
-                            var contentString = '<div id="content">'+
-                                '<div id="siteNotice">'+
+                            var infoStrng = '<div id="content">'+
+                             '<div id="siteNotice">'+
                                 '</div>'+
                                 v.long_name + '</h1>'+
                                 '<div id="bodyContent">'+
-                                '<p>School administrator: ' +  v.administrator +
+                                
                                 '<br />School Phone: ' + v.phone + ' Fax: ' + v.fax +
                                 '<br />Address: ' + v.address +
-                                '<br />School hours: ' + v.school_hours +
-                                '<br />Graduation rate: ' + v.graduation_rate_mean + '%' +
+                                
                                 '</p>'+
                                 '</div>'+
                                 '</div>';
                             console.log(v.school_longitude);
                             console.log(v.long_name);
                             var infowindow = new google.maps.InfoWindow({
-                              content: contentString
+                              content: infoStrng
                             });
-                            var image = 'markers/m2.ico';
+                            var image = 'markers/m2.svg';
                             var mymarker = new google.maps.Marker({
                               position: {lat: parseFloat(v.school_latitude), lng: parseFloat(v.school_longitude)},
                               map: mymap,
@@ -320,25 +435,24 @@
                         .done(function(response) {
                             console.log(response);
                         $.each(response, function(i, v) {
-                            var contentString = '<div id="content">'+
+                            var infoStrng = '<div id="content">'+
                                 '<div id="siteNotice">'+
                                 '</div>'+
                                 v.long_name + '</h1>'+
                                 '<div id="bodyContent">'+
-                                '<p>School administrator: ' +  v.administrator +
+                                
                                 '<br />School Phone: ' + v.phone + ' Fax: ' + v.fax +
                                 '<br />Address: ' + v.address +
-                                '<br />School hours: ' + v.school_hours +
-                                '<br />Graduation rate: ' + v.graduation_rate_mean + '%' +
+                                
                                 '</p>'+
                                 '</div>'+
                                 '</div>';
                             console.log(v.school_longitude);
                             console.log(v.long_name);
                             var infowindow = new google.maps.InfoWindow({
-                              content: contentString
+                              content: infoStrng
                             });
-                            var image = 'markers/m3.ico';
+                            var image = 'markers/m3.svg';
                             var mymarker = new google.maps.Marker({
                               position: {lat: parseFloat(v.school_latitude), lng: parseFloat(v.school_longitude)},
                               map: mymap,
@@ -361,25 +475,24 @@
                         .done(function(response) {
                             console.log(response);
                         $.each(response, function(i, v) {
-                            var contentString = '<div id="content">'+
-                                '<div id="siteNotice">'+
+                            var infoStrng = '<div id="content">'+
+                               '<div id="siteNotice">'+
                                 '</div>'+
                                 v.long_name + '</h1>'+
                                 '<div id="bodyContent">'+
-                                '<p>School administrator: ' +  v.administrator +
+                                
                                 '<br />School Phone: ' + v.phone + ' Fax: ' + v.fax +
                                 '<br />Address: ' + v.address +
-                                '<br />School hours: ' + v.school_hours +
-                                '<br />Graduation rate: ' + v.graduation_rate_mean + '%' +
+                                
                                 '</p>'+
                                 '</div>'+
                                 '</div>';
                             console.log(v.school_longitude);
                             console.log(v.long_name);
                             var infowindow = new google.maps.InfoWindow({
-                              content: contentString
+                              content: infoStrng
                             });
-                            var image = 'markers/m4.ico';
+                            var image = 'markers/m4.svg';
                             var mymarker = new google.maps.Marker({
                               position: {lat: parseFloat(v.school_latitude), lng: parseFloat(v.school_longitude)},
                               map: mymap,
@@ -402,25 +515,24 @@
                         .done(function(response) {
                             console.log(response);
                         $.each(response, function(i, v) {
-                            var contentString = '<div id="content">'+
+                            var infoStrng = '<div id="content">'+
                                 '<div id="siteNotice">'+
                                 '</div>'+
                                 v.long_name + '</h1>'+
                                 '<div id="bodyContent">'+
-                                '<p>School administrator: ' +  v.administrator +
+                                
                                 '<br />School Phone: ' + v.phone + ' Fax: ' + v.fax +
                                 '<br />Address: ' + v.address +
-                                '<br />School hours: ' + v.school_hours +
-                                '<br />Graduation rate: ' + v.graduation_rate_mean + '%' +
+                                
                                 '</p>'+
                                 '</div>'+
                                 '</div>';
                             console.log(v.school_longitude);
                             console.log(v.long_name);
                             var infowindow = new google.maps.InfoWindow({
-                              content: contentString
+                              content: infoStrng
                             });
-                            var image = 'markers/m5.ico';
+                            var image = 'markers/m5.svg';
                             var mymarker = new google.maps.Marker({
                               position: {lat: parseFloat(v.school_latitude), lng: parseFloat(v.school_longitude)},
                               map: mymap,
@@ -443,25 +555,24 @@
                         .done(function(response) {
                             console.log(response);
                         $.each(response, function(i, v) {
-                            var contentString = '<div id="content">'+
+                            var infoStrng = '<div id="content">'+
                                 '<div id="siteNotice">'+
                                 '</div>'+
                                 v.long_name + '</h1>'+
                                 '<div id="bodyContent">'+
-                                '<p>School administrator: ' +  v.administrator +
+                                
                                 '<br />School Phone: ' + v.phone + ' Fax: ' + v.fax +
                                 '<br />Address: ' + v.address +
-                                '<br />School hours: ' + v.school_hours +
-                                '<br />Graduation rate: ' + v.graduation_rate_mean + '%' +
+                                
                                 '</p>'+
                                 '</div>'+
                                 '</div>';
                             console.log(v.school_longitude);
                             console.log(v.long_name);
                             var infowindow = new google.maps.InfoWindow({
-                              content: contentString
+                              content: infoStrng
                             });
-                            var image = 'markers/m6.ico';
+                            var image = 'markers/m6.svg';
                             var mymarker = new google.maps.Marker({
                               position: {lat: parseFloat(v.school_latitude), lng: parseFloat(v.school_longitude)},
                               map: mymap,
@@ -484,25 +595,24 @@
                         .done(function(response) {
                             console.log(response);
                         $.each(response, function(i, v) {
-                            var contentString = '<div id="content">'+
-                                '<div id="siteNotice">'+
+                            var infoStrng = '<div id="content">'+
+                               '<div id="siteNotice">'+
                                 '</div>'+
                                 v.long_name + '</h1>'+
                                 '<div id="bodyContent">'+
-                                '<p>School administrator: ' +  v.administrator +
+                                
                                 '<br />School Phone: ' + v.phone + ' Fax: ' + v.fax +
                                 '<br />Address: ' + v.address +
-                                '<br />School hours: ' + v.school_hours +
-                                '<br />Graduation rate: ' + v.graduation_rate_mean + '%' +
+                                
                                 '</p>'+
                                 '</div>'+
                                 '</div>';
                             console.log(v.school_longitude);
                             console.log(v.long_name);
                             var infowindow = new google.maps.InfoWindow({
-                              content: contentString
+                              content: infoStrng
                             });
-                            var image = 'markers/m7.ico';
+                            var image = 'markers/m7.svg';
                             var mymarker = new google.maps.Marker({
                               position: {lat: parseFloat(v.school_latitude), lng: parseFloat(v.school_longitude)},
                               map: mymap,
@@ -525,25 +635,24 @@
                         .done(function(response) {
                             console.log(response);
                         $.each(response, function(i, v) {
-                            var contentString = '<div id="content">'+
-                                '<div id="siteNotice">'+
+                            var infoStrng = '<div id="content">'+
+                               '<div id="siteNotice">'+
                                 '</div>'+
                                 v.long_name + '</h1>'+
                                 '<div id="bodyContent">'+
-                                '<p>School administrator: ' +  v.administrator +
+                                
                                 '<br />School Phone: ' + v.phone + ' Fax: ' + v.fax +
                                 '<br />Address: ' + v.address +
-                                '<br />School hours: ' + v.school_hours +
-                                '<br />Graduation rate: ' + v.graduation_rate_mean + '%' +
+                                
                                 '</p>'+
                                 '</div>'+
                                 '</div>';
                             console.log(v.school_longitude);
                             console.log(v.long_name);
                             var infowindow = new google.maps.InfoWindow({
-                              content: contentString
+                              content: infoStrng
                             });
-                            var image = 'markers/m8.ico';
+                            var image = 'markers/m8.svg';
                             var mymarker = new google.maps.Marker({
                               position: {lat: parseFloat(v.school_latitude), lng: parseFloat(v.school_longitude)},
                               map: mymap,
@@ -566,25 +675,24 @@
                         .done(function(response) {
                             console.log(response);
                         $.each(response, function(i, v) {
-                            var contentString = '<div id="content">'+
-                                '<div id="siteNotice">'+
+                            var infoStrng = '<div id="content">'+
+                               '<div id="siteNotice">'+
                                 '</div>'+
                                 v.long_name + '</h1>'+
                                 '<div id="bodyContent">'+
-                                '<p>School administrator: ' +  v.administrator +
+                                
                                 '<br />School Phone: ' + v.phone + ' Fax: ' + v.fax +
                                 '<br />Address: ' + v.address +
-                                '<br />School hours: ' + v.school_hours +
-                                '<br />Graduation rate: ' + v.graduation_rate_mean + '%' +
+                                
                                 '</p>'+
                                 '</div>'+
                                 '</div>';
                             console.log(v.school_longitude);
                             console.log(v.long_name);
                             var infowindow = new google.maps.InfoWindow({
-                              content: contentString
+                              content: infoStrng
                             });
-                            var image = 'markers/m9.ico';
+                            var image = 'markers/m9.svg';
                             var mymarker = new google.maps.Marker({
                               position: {lat: parseFloat(v.school_latitude), lng: parseFloat(v.school_longitude)},
                               map: mymap,
@@ -607,25 +715,24 @@
                         .done(function(response) {
                             console.log(response);
                         $.each(response, function(i, v) {
-                            var contentString = '<div id="content">'+
-                                '<div id="siteNotice">'+
+                            var infoStrng = '<div id="content">'+
+                               '<div id="siteNotice">'+
                                 '</div>'+
                                 v.long_name + '</h1>'+
                                 '<div id="bodyContent">'+
-                                '<p>School administrator: ' +  v.administrator +
+                                
                                 '<br />School Phone: ' + v.phone + ' Fax: ' + v.fax +
                                 '<br />Address: ' + v.address +
-                                '<br />School hours: ' + v.school_hours +
-                                '<br />Graduation rate: ' + v.graduation_rate_mean + '%' +
+                                
                                 '</p>'+
                                 '</div>'+
                                 '</div>';
                             console.log(v.school_longitude);
                             console.log(v.long_name);
                             var infowindow = new google.maps.InfoWindow({
-                              content: contentString
+                              content: infoStrng
                             });
-                            var image = 'markers/m10.ico';
+                            var image = 'markers/m10.svg';
                             var mymarker = new google.maps.Marker({
                               position: {lat: parseFloat(v.school_latitude), lng: parseFloat(v.school_longitude)},
                               map: mymap,
@@ -648,25 +755,24 @@
                         .done(function(response) {
                             console.log(response);
                         $.each(response, function(i, v) {
-                            var contentString = '<div id="content">'+
-                                '<div id="siteNotice">'+
+                            var infoStrng = '<div id="content">'+
+                               '<div id="siteNotice">'+
                                 '</div>'+
                                 v.long_name + '</h1>'+
                                 '<div id="bodyContent">'+
-                                '<p>School administrator: ' +  v.administrator +
+                                
                                 '<br />School Phone: ' + v.phone + ' Fax: ' + v.fax +
                                 '<br />Address: ' + v.address +
-                                '<br />School hours: ' + v.school_hours +
-                                '<br />Graduation rate: ' + v.graduation_rate_mean + '%' +
+                                
                                 '</p>'+
                                 '</div>'+
                                 '</div>';
                             console.log(v.school_longitude);
                             console.log(v.long_name);
                             var infowindow = new google.maps.InfoWindow({
-                              content: contentString
+                              content: infoStrng
                             });
-                            var image = 'markers/m11.ico';
+                            var image = 'markers/m11.svg';
                             var mymarker = new google.maps.Marker({
                               position: {lat: parseFloat(v.school_latitude), lng: parseFloat(v.school_longitude)},
                               map: mymap,
@@ -689,25 +795,24 @@
                         .done(function(response) {
                             console.log(response);
                         $.each(response, function(i, v) {
-                            var contentString = '<div id="content">'+
+                            var infoStrng = '<div id="content">'+
                                 '<div id="siteNotice">'+
                                 '</div>'+
                                 v.long_name + '</h1>'+
                                 '<div id="bodyContent">'+
-                                '<p>School administrator: ' +  v.administrator +
+                                
                                 '<br />School Phone: ' + v.phone + ' Fax: ' + v.fax +
                                 '<br />Address: ' + v.address +
-                                '<br />School hours: ' + v.school_hours +
-                                '<br />Graduation rate: ' + v.graduation_rate_mean + '%' +
+                                
                                 '</p>'+
                                 '</div>'+
                                 '</div>';
                             console.log(v.school_longitude);
                             console.log(v.long_name);
                             var infowindow = new google.maps.InfoWindow({
-                              content: contentString
+                              content: infoStrng
                             });
-                            var image = 'markers/m12.ico';
+                            var image = 'markers/m12.svg';
                             var mymarker = new google.maps.Marker({
                               position: {lat: parseFloat(v.school_latitude), lng: parseFloat(v.school_longitude)},
                               map: mymap,
@@ -726,17 +831,70 @@
                     });
                 }
             });
+            
+         });
+         //Found on piazza from an earlier post
+         $(document).ready(function(){
+        var menuEl = document.querySelector('#demo-menu');
+        var menu = new mdc.menu.MDCMenu(menuEl);
+        var menuButtonEl = document.querySelector('#menu-btn');
+        menuButtonEl.addEventListener('click', function() {
+          menu.open = !menu.open;
         });
+        var remember = document.querySelector('input[name="remember"]');
+        remember.addEventListener('change', function(evt) {
+          menu.rememberSelection = evt.target.checked;
+        });
+        var animation = document.querySelector('input[name="animation"]');
+        animation.addEventListener('change', function(evt) {
+          menu.quickOpen = evt.target.checked;
+        });
+        var radios = document.querySelectorAll('input[name="position"]');
+        var anchor = document.querySelector('.mdc-menu-anchor');
+        // Initialize to top left.
+        anchor.style.setProperty('top', '0');
+        anchor.style.setProperty('left', '0');
+      });
+      
+      
+      
+      $(document).ready(function(){
+        var drawerEl = document.querySelector('.mdc-drawer');
+        var MDCtemp = mdc.drawer.MDCtemp;
+        var drawer = new MDCtemp(drawerEl);
+        document.querySelector('#drawerButton').addEventListener('click', function() {
+          drawer.open = true;
+        });
+        drawerEl.addEventListener('MDCtemp:open', function() {
+          console.log('Received MDCtemp:open');
+        });
+        drawerEl.addEventListener('MDCtemp:close', function() {
+          console.log('Received MDCtemp:close');
+        });
+        // Demonstrate application of --activated modifier to drawer menu items
+        var selection = 'mdc-list-item--selected';
+        document.querySelector('.mdc-drawer__drawer').addEventListener('click', function(event) {
+          var el = event.target;
+          while (el && !el.classList.contains('mdc-list-item')) {
+            el = el.parentElement;
+          }
+          if (el) {
+            var selectedItem = document.querySelector('.' + selection);
+            if (selectedItem) {
+              selectedItem.classList.remove(selection);
+            }
+            event.target.classList.add(selection);
+          }
+        });
+      });
         
-            
-            
-            
-        </script>
+    </script>
         
-        <script async defer
+    <script async defer
     src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDBDZX0dgSkS3q8veDa9Uu4etKoz1J0q58&callback=initMap">
     </script>
     
+    <script>mdc.autoInit()</script>
     
     </body>
 
