@@ -74,25 +74,25 @@
       </nav>
     </aside>
         <div class="pg1">
-            <div class="infoBox" >
+            <div class="infobox" >
                 <h2 class="mdc-typography--title">
                   Hello!
                 </h2>
                 <p class="mdc-typography--body1">You could search up different school types of schools in Chicago,IL
                 .In the next page it will display it in a the map.
                 </p>
-                <button class="nxtButton mdc-button mdc-button--unelevated big-round-corner-button mdc-ripple-upgraded" style="--mdc-ripple-fg-size:87.3844px; --mdc-ripple-fg-scale:1.83127; --mdc-ripple-fg-translate-start:51.3078px, -28.9734px; --mdc-ripple-fg-translate-end:29.1281px, -25.6922px;">
+                <button class="nextButton mdc-button mdc-button--unelevated big-round-corner-button mdc-ripple-upgraded" style="--mdc-ripple-fg-size:87.3844px; --mdc-ripple-fg-scale:1.83127; --mdc-ripple-fg-translate-start:51.3078px, -28.9734px; --mdc-ripple-fg-translate-end:29.1281px, -25.6922px;">
                   Next
                 </button>
             </div>
         </div>
         <div class="pg2">
         <div class="page2">    
-            <div class="informationBox2" >
+            <div class="infobox2" >
             <h2 class="mdc-typography--title">
               School Type Selection
             </h2>
-            <p class="mdc-typography--body1">Please select the school types that you want to have displayed below and press show map. (Please make sure to press the check, that you want to utilize)
+            <p class="mdc-typography--body1">Please select the school types that you want to have displayed below and press show map
             </p>
             <div class="mdc-menu-anchor" style="top: 50px; left: 0px;">
             <button id="menu-button" class="material-icons mdc-button \ demo-button--normal">
@@ -140,7 +140,7 @@
                 </ul>
             </div>
           </div>
-            <button class="showMapButton mdc-button mdc-button--unelevated big-round-corner-button mdc-ripple-upgraded" style="--mdc-ripple-fg-size:87.3844px; --mdc-ripple-fg-scale:1.83127; --mdc-ripple-fg-translate-start:51.3078px, -28.9734px; --mdc-ripple-fg-translate-end:29.1281px, -25.6922px;">
+            <button class="showMap mdc-button mdc-button--unelevated big-round-corner-button mdc-ripple-upgraded" style="--mdc-ripple-fg-size:87.3844px; --mdc-ripple-fg-scale:1.83127; --mdc-ripple-fg-translate-start:51.3078px, -28.9734px; --mdc-ripple-fg-translate-end:29.1281px, -25.6922px;">
                   Show
             </button>
         </div>
@@ -156,10 +156,588 @@
         
         
         
-        
-    
-    
     <script src="node_modules/material-components-web/dist/material-components-web.js"></script>
+        
+     <script
+        src="https://code.jquery.com/jquery-3.3.1.min.js"
+        integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+        crossorigin="anonymous">
+    </script>
+    <script>
+    
+         function removeMarkers() {
+        //Loop through and remove markers
+        for (var i = 0; i < markers.length; i++) {
+            markers[i].setMap(null);
+        }
+        markers = [];
+        };    
+    
+    
+        var mymap;
+        var markers = [];
+        function initMap() {
+            var loc = {lat: 41.866127, lng: -87.652351};
+            mymap = new google.maps.Map(document.getElementById('map'), {
+              zoom: 10,
+              center: {lat: 41.866127, lng: -87.652351}
+            });
+        }
+    
+        $("#the-toolbar").hide();
+        $(".pg2").hide();
+        $(".infobox2").hide();
+        $("#map").hide();  
+        $(document).ready(function(){
+            $('.nextButton').on('click', function(event) {        
+                $(".pg1").hide();
+                $(".infobox").hide();
+                $(".pg2").show();
+                $(".infobox2").show();
+        //        $(".pg1").toggle("slideUp");
+            });
+            
+            $('#backButton').on('click', function(event) {        
+                $(".pg3").hide();
+                $("#map").hide();
+                $(".pg2").show();
+                $(".infobox2").show();
+                $("#the-toolbar").hide();
+                $("#schoolList").html("");
+                DeleteMarkers();
+            });
+            
+            $('#drawerButton').on('click', function(event) {        
+                
+                
+            });
+            
+            
+            const box1 = document.querySelector('input[name="box1"]');
+            const box2 = document.querySelector('input[name="box2"]');
+            const box3 = document.querySelector('input[name="box3"]');
+            const box4 = document.querySelector('input[name="box4"]');
+            const box5 = document.querySelector('input[name="box5"]');
+            const box6 = document.querySelector('input[name="box6"]');
+            const box7 = document.querySelector('input[name="box7"]');
+            const box8 = document.querySelector('input[name="box8"]');
+            const box9 = document.querySelector('input[name="box9"]');
+            const box10 = document.querySelector('input[name="box10"]');
+            const box11 = document.querySelector('input[name="box11"]');
+            const box12 = document.querySelector('input[name="box12"]');
+            
+            //Recieved help from Mindagaus
+        $('.showMap').on('click', function(event) {
+                $(".pg2").hide();
+                $(".infobox2").hide();
+                $(".pg3").show();
+                $("#map").show();
+                $("#the-toolbar").show();
+                if (box1.checked) {
+                    $.get("https://data.cityofchicago.org/resource/76dk-7ieb.json?$where=school_type IN ('Charter')")
+                        .done(function(response) {
+                            console.log(response);
+                        $.each(response, function(i, v) {
+                            var contentString = '<div id="content">'+
+                                '<div id="siteNotice">'+
+                                '</div>'+
+                                v.long_name + '</h1>'+
+                                '<div id="bodyContent">'+
+                                '<p>School administrator: ' +  v.administrator +
+                                '<br />School Phone: ' + v.phone + ' Fax: ' + v.fax +
+                                '<br />Address: ' + v.address +
+                                '<br />School hours: ' + v.school_hours +
+                                '<br />Graduation rate: ' + v.graduation_rate_mean + '%' +
+                                '</p>'+
+                                '</div>'+
+                                '</div>';
+                            console.log(v.school_longitude);
+                            console.log(v.long_name);
+                            var infowindow = new google.maps.InfoWindow({
+                              content: contentString
+                            });
+                            var image = 'markers/m1.ico';
+                            var mymarker = new google.maps.Marker({
+                              position: {lat: parseFloat(v.school_latitude), lng: parseFloat(v.school_longitude)},
+                              map: mymap,
+                              title: v.long_name,
+                              icon: image
+                            });
+                            markers.push(mymarker);
+                            
+                            console.log(v);
+                                mymarker.addListener('click', function() {
+                                infowindow.open(mymap, mymarker);
+                            });
+                            $( "#schoolList" ).append( '<p>'+ v.long_name +'</p>');
+                            $( "#schoolList" ).append( '<hr class="mdc-list-divider">');
+                        });
+                    });
+                }
+                if (box2.checked) {
+                    $.get("https://data.cityofchicago.org/resource/76dk-7ieb.json?$where=school_type IN ('Career academy')")
+                        .done(function(response) {
+                            console.log(response);
+                        $.each(response, function(i, v) {
+                            var contentString = '<div id="content">'+
+                                '<div id="siteNotice">'+
+                                '</div>'+
+                                v.long_name + '</h1>'+
+                                '<div id="bodyContent">'+
+                                '<p>School administrator: ' +  v.administrator +
+                                '<br />School Phone: ' + v.phone + ' Fax: ' + v.fax +
+                                '<br />Address: ' + v.address +
+                                '<br />School hours: ' + v.school_hours +
+                                '<br />Graduation rate: ' + v.graduation_rate_mean + '%' +
+                                '</p>'+
+                                '</div>'+
+                                '</div>';
+                            console.log(v.school_longitude);
+                            console.log(v.long_name);
+                            var infowindow = new google.maps.InfoWindow({
+                              content: contentString
+                            });
+                            var image = 'markers/m2.ico';
+                            var mymarker = new google.maps.Marker({
+                              position: {lat: parseFloat(v.school_latitude), lng: parseFloat(v.school_longitude)},
+                              map: mymap,
+                              title: v.long_name,
+                              icon: image
+                            });
+                            markers.push(mymarker);
+                            
+                            console.log(v);
+                                mymarker.addListener('click', function() {
+                                infowindow.open(mymap, mymarker);
+                            });
+                            $( "#schoolList" ).append( '<p>'+ v.long_name +'</p>');
+                            $( "#schoolList" ).append( '<hr class="mdc-list-divider">');
+                        });
+                    });
+                }
+                if (box3.checked) {
+                    $.get("https://data.cityofchicago.org/resource/76dk-7ieb.json?$where=school_type IN ('Citywide-Option')")
+                        .done(function(response) {
+                            console.log(response);
+                        $.each(response, function(i, v) {
+                            var contentString = '<div id="content">'+
+                                '<div id="siteNotice">'+
+                                '</div>'+
+                                v.long_name + '</h1>'+
+                                '<div id="bodyContent">'+
+                                '<p>School administrator: ' +  v.administrator +
+                                '<br />School Phone: ' + v.phone + ' Fax: ' + v.fax +
+                                '<br />Address: ' + v.address +
+                                '<br />School hours: ' + v.school_hours +
+                                '<br />Graduation rate: ' + v.graduation_rate_mean + '%' +
+                                '</p>'+
+                                '</div>'+
+                                '</div>';
+                            console.log(v.school_longitude);
+                            console.log(v.long_name);
+                            var infowindow = new google.maps.InfoWindow({
+                              content: contentString
+                            });
+                            var image = 'markers/m3.ico';
+                            var mymarker = new google.maps.Marker({
+                              position: {lat: parseFloat(v.school_latitude), lng: parseFloat(v.school_longitude)},
+                              map: mymap,
+                              title: v.long_name,
+                              icon: image
+                            });
+                            markers.push(mymarker);
+                            
+                            console.log(v);
+                                mymarker.addListener('click', function() {
+                                infowindow.open(mymap, mymarker);
+                            });
+                            $( "#schoolList" ).append( '<p>'+ v.long_name +'</p>');
+                            $( "#schoolList" ).append( '<hr class="mdc-list-divider">');
+                        });
+                    });
+                }
+                if (box4.checked) {
+                    $.get("https://data.cityofchicago.org/resource/76dk-7ieb.json?$where=school_type IN ('Classical')")
+                        .done(function(response) {
+                            console.log(response);
+                        $.each(response, function(i, v) {
+                            var contentString = '<div id="content">'+
+                                '<div id="siteNotice">'+
+                                '</div>'+
+                                v.long_name + '</h1>'+
+                                '<div id="bodyContent">'+
+                                '<p>School administrator: ' +  v.administrator +
+                                '<br />School Phone: ' + v.phone + ' Fax: ' + v.fax +
+                                '<br />Address: ' + v.address +
+                                '<br />School hours: ' + v.school_hours +
+                                '<br />Graduation rate: ' + v.graduation_rate_mean + '%' +
+                                '</p>'+
+                                '</div>'+
+                                '</div>';
+                            console.log(v.school_longitude);
+                            console.log(v.long_name);
+                            var infowindow = new google.maps.InfoWindow({
+                              content: contentString
+                            });
+                            var image = 'markers/m4.ico';
+                            var mymarker = new google.maps.Marker({
+                              position: {lat: parseFloat(v.school_latitude), lng: parseFloat(v.school_longitude)},
+                              map: mymap,
+                              title: v.long_name,
+                              icon: image
+                            });
+                            markers.push(mymarker);
+                            
+                            console.log(v);
+                                mymarker.addListener('click', function() {
+                                infowindow.open(mymap, mymarker);
+                            });
+                            $( "#schoolList" ).append( '<p>'+ v.long_name +'</p>');
+                            $( "#schoolList" ).append( '<hr class="mdc-list-divider">');
+                        });
+                    });
+                }
+                if (box5.checked) {
+                    $.get("https://data.cityofchicago.org/resource/76dk-7ieb.json?$where=school_type IN ('Contract')")
+                        .done(function(response) {
+                            console.log(response);
+                        $.each(response, function(i, v) {
+                            var contentString = '<div id="content">'+
+                                '<div id="siteNotice">'+
+                                '</div>'+
+                                v.long_name + '</h1>'+
+                                '<div id="bodyContent">'+
+                                '<p>School administrator: ' +  v.administrator +
+                                '<br />School Phone: ' + v.phone + ' Fax: ' + v.fax +
+                                '<br />Address: ' + v.address +
+                                '<br />School hours: ' + v.school_hours +
+                                '<br />Graduation rate: ' + v.graduation_rate_mean + '%' +
+                                '</p>'+
+                                '</div>'+
+                                '</div>';
+                            console.log(v.school_longitude);
+                            console.log(v.long_name);
+                            var infowindow = new google.maps.InfoWindow({
+                              content: contentString
+                            });
+                            var image = 'markers/m5.ico';
+                            var mymarker = new google.maps.Marker({
+                              position: {lat: parseFloat(v.school_latitude), lng: parseFloat(v.school_longitude)},
+                              map: mymap,
+                              title: v.long_name,
+                              icon: image
+                            });
+                            markers.push(mymarker);
+                            
+                            console.log(v);
+                                mymarker.addListener('click', function() {
+                                infowindow.open(mymap, mymarker);
+                            });
+                            $( "#schoolList" ).append( '<p>'+ v.long_name +'</p>');
+                            $( "#schoolList" ).append( '<hr class="mdc-list-divider">');
+                        });
+                    });
+                }
+                if (box6.checked) {
+                    $.get("https://data.cityofchicago.org/resource/76dk-7ieb.json?$where=school_type IN ('Magnet')")
+                        .done(function(response) {
+                            console.log(response);
+                        $.each(response, function(i, v) {
+                            var contentString = '<div id="content">'+
+                                '<div id="siteNotice">'+
+                                '</div>'+
+                                v.long_name + '</h1>'+
+                                '<div id="bodyContent">'+
+                                '<p>School administrator: ' +  v.administrator +
+                                '<br />School Phone: ' + v.phone + ' Fax: ' + v.fax +
+                                '<br />Address: ' + v.address +
+                                '<br />School hours: ' + v.school_hours +
+                                '<br />Graduation rate: ' + v.graduation_rate_mean + '%' +
+                                '</p>'+
+                                '</div>'+
+                                '</div>';
+                            console.log(v.school_longitude);
+                            console.log(v.long_name);
+                            var infowindow = new google.maps.InfoWindow({
+                              content: contentString
+                            });
+                            var image = 'markers/m6.ico';
+                            var mymarker = new google.maps.Marker({
+                              position: {lat: parseFloat(v.school_latitude), lng: parseFloat(v.school_longitude)},
+                              map: mymap,
+                              title: v.long_name,
+                              icon: image
+                            });
+                            markers.push(mymarker);
+                            
+                            console.log(v);
+                                mymarker.addListener('click', function() {
+                                infowindow.open(mymap, mymarker);
+                            });
+                            $( "#schoolList" ).append( '<p>'+ v.long_name +'</p>');
+                            $( "#schoolList" ).append( '<hr class="mdc-list-divider">');
+                        });
+                    });
+                }
+                if (box7.checked) {
+                    $.get("https://data.cityofchicago.org/resource/76dk-7ieb.json?$where=school_type IN ('Military academy')")
+                        .done(function(response) {
+                            console.log(response);
+                        $.each(response, function(i, v) {
+                            var contentString = '<div id="content">'+
+                                '<div id="siteNotice">'+
+                                '</div>'+
+                                v.long_name + '</h1>'+
+                                '<div id="bodyContent">'+
+                                '<p>School administrator: ' +  v.administrator +
+                                '<br />School Phone: ' + v.phone + ' Fax: ' + v.fax +
+                                '<br />Address: ' + v.address +
+                                '<br />School hours: ' + v.school_hours +
+                                '<br />Graduation rate: ' + v.graduation_rate_mean + '%' +
+                                '</p>'+
+                                '</div>'+
+                                '</div>';
+                            console.log(v.school_longitude);
+                            console.log(v.long_name);
+                            var infowindow = new google.maps.InfoWindow({
+                              content: contentString
+                            });
+                            var image = 'markers/m7.ico';
+                            var mymarker = new google.maps.Marker({
+                              position: {lat: parseFloat(v.school_latitude), lng: parseFloat(v.school_longitude)},
+                              map: mymap,
+                              title: v.long_name,
+                              icon: image
+                            });
+                            markers.push(mymarker);
+                            
+                            console.log(v);
+                                mymarker.addListener('click', function() {
+                                infowindow.open(mymap, mymarker);
+                            });
+                            $( "#schoolList" ).append( '<p>'+ v.long_name +'</p>');
+                            $( "#schoolList" ).append( '<hr class="mdc-list-divider">');
+                        });
+                    });
+                }
+                if (box8.checked) {
+                    $.get("https://data.cityofchicago.org/resource/76dk-7ieb.json?$where=school_type IN ('Neighborhood')")
+                        .done(function(response) {
+                            console.log(response);
+                        $.each(response, function(i, v) {
+                            var contentString = '<div id="content">'+
+                                '<div id="siteNotice">'+
+                                '</div>'+
+                                v.long_name + '</h1>'+
+                                '<div id="bodyContent">'+
+                                '<p>School administrator: ' +  v.administrator +
+                                '<br />School Phone: ' + v.phone + ' Fax: ' + v.fax +
+                                '<br />Address: ' + v.address +
+                                '<br />School hours: ' + v.school_hours +
+                                '<br />Graduation rate: ' + v.graduation_rate_mean + '%' +
+                                '</p>'+
+                                '</div>'+
+                                '</div>';
+                            console.log(v.school_longitude);
+                            console.log(v.long_name);
+                            var infowindow = new google.maps.InfoWindow({
+                              content: contentString
+                            });
+                            var image = 'markers/m8.ico';
+                            var mymarker = new google.maps.Marker({
+                              position: {lat: parseFloat(v.school_latitude), lng: parseFloat(v.school_longitude)},
+                              map: mymap,
+                              title: v.long_name,
+                              icon: image
+                            });
+                            markers.push(mymarker);
+                            
+                            console.log(v);
+                                mymarker.addListener('click', function() {
+                                infowindow.open(mymap, mymarker);
+                            });
+                            $( "#schoolList" ).append( '<p>'+ v.long_name +'</p>');
+                            $( "#schoolList" ).append( '<hr class="mdc-list-divider">');
+                        });
+                    });
+                }
+                if (box9.checked) {
+                    $.get("https://data.cityofchicago.org/resource/76dk-7ieb.json?$where=school_type IN ('Regional gifted center')")
+                        .done(function(response) {
+                            console.log(response);
+                        $.each(response, function(i, v) {
+                            var contentString = '<div id="content">'+
+                                '<div id="siteNotice">'+
+                                '</div>'+
+                                v.long_name + '</h1>'+
+                                '<div id="bodyContent">'+
+                                '<p>School administrator: ' +  v.administrator +
+                                '<br />School Phone: ' + v.phone + ' Fax: ' + v.fax +
+                                '<br />Address: ' + v.address +
+                                '<br />School hours: ' + v.school_hours +
+                                '<br />Graduation rate: ' + v.graduation_rate_mean + '%' +
+                                '</p>'+
+                                '</div>'+
+                                '</div>';
+                            console.log(v.school_longitude);
+                            console.log(v.long_name);
+                            var infowindow = new google.maps.InfoWindow({
+                              content: contentString
+                            });
+                            var image = 'markers/m9.ico';
+                            var mymarker = new google.maps.Marker({
+                              position: {lat: parseFloat(v.school_latitude), lng: parseFloat(v.school_longitude)},
+                              map: mymap,
+                              title: v.long_name,
+                              icon: image
+                            });
+                            markers.push(mymarker);
+                            
+                            console.log(v);
+                                mymarker.addListener('click', function() {
+                                infowindow.open(mymap, mymarker);
+                            });
+                            $( "#schoolList" ).append( '<p>'+ v.long_name +'</p>');
+                            $( "#schoolList" ).append( '<hr class="mdc-list-divider">');
+                        });
+                    });
+                }
+                 if (box10.checked) {
+                    $.get("https://data.cityofchicago.org/resource/76dk-7ieb.json?$where=school_type IN ('Selective enrollment')")
+                        .done(function(response) {
+                            console.log(response);
+                        $.each(response, function(i, v) {
+                            var contentString = '<div id="content">'+
+                                '<div id="siteNotice">'+
+                                '</div>'+
+                                v.long_name + '</h1>'+
+                                '<div id="bodyContent">'+
+                                '<p>School administrator: ' +  v.administrator +
+                                '<br />School Phone: ' + v.phone + ' Fax: ' + v.fax +
+                                '<br />Address: ' + v.address +
+                                '<br />School hours: ' + v.school_hours +
+                                '<br />Graduation rate: ' + v.graduation_rate_mean + '%' +
+                                '</p>'+
+                                '</div>'+
+                                '</div>';
+                            console.log(v.school_longitude);
+                            console.log(v.long_name);
+                            var infowindow = new google.maps.InfoWindow({
+                              content: contentString
+                            });
+                            var image = 'markers/m10.ico';
+                            var mymarker = new google.maps.Marker({
+                              position: {lat: parseFloat(v.school_latitude), lng: parseFloat(v.school_longitude)},
+                              map: mymap,
+                              title: v.long_name,
+                              icon: image
+                            });
+                            markers.push(mymarker);
+                            
+                            console.log(v);
+                                mymarker.addListener('click', function() {
+                                infowindow.open(mymap, mymarker);
+                            });
+                            $( "#schoolList" ).append( '<p>'+ v.long_name +'</p>');
+                            $( "#schoolList" ).append( '<hr class="mdc-list-divider">');
+                        });
+                    });
+                }
+                if (box11.checked) {
+                    $.get("https://data.cityofchicago.org/resource/76dk-7ieb.json?$where=school_type IN ('Small')")
+                        .done(function(response) {
+                            console.log(response);
+                        $.each(response, function(i, v) {
+                            var contentString = '<div id="content">'+
+                                '<div id="siteNotice">'+
+                                '</div>'+
+                                v.long_name + '</h1>'+
+                                '<div id="bodyContent">'+
+                                '<p>School administrator: ' +  v.administrator +
+                                '<br />School Phone: ' + v.phone + ' Fax: ' + v.fax +
+                                '<br />Address: ' + v.address +
+                                '<br />School hours: ' + v.school_hours +
+                                '<br />Graduation rate: ' + v.graduation_rate_mean + '%' +
+                                '</p>'+
+                                '</div>'+
+                                '</div>';
+                            console.log(v.school_longitude);
+                            console.log(v.long_name);
+                            var infowindow = new google.maps.InfoWindow({
+                              content: contentString
+                            });
+                            var image = 'markers/m11.ico';
+                            var mymarker = new google.maps.Marker({
+                              position: {lat: parseFloat(v.school_latitude), lng: parseFloat(v.school_longitude)},
+                              map: mymap,
+                              title: v.long_name,
+                              icon: image
+                            });
+                            markers.push(mymarker);
+                            
+                            console.log(v);
+                                mymarker.addListener('click', function() {
+                                infowindow.open(mymap, mymarker);
+                            });
+                            $( "#schoolList" ).append( '<p>'+ v.long_name +'</p>');
+                            $( "#schoolList" ).append( '<hr class="mdc-list-divider">');
+                        });
+                    });
+                }
+                if (box12.checked) {
+                    $.get("https://data.cityofchicago.org/resource/76dk-7ieb.json?$where=school_type IN ('Special Education')")
+                        .done(function(response) {
+                            console.log(response);
+                        $.each(response, function(i, v) {
+                            var contentString = '<div id="content">'+
+                                '<div id="siteNotice">'+
+                                '</div>'+
+                                v.long_name + '</h1>'+
+                                '<div id="bodyContent">'+
+                                '<p>School administrator: ' +  v.administrator +
+                                '<br />School Phone: ' + v.phone + ' Fax: ' + v.fax +
+                                '<br />Address: ' + v.address +
+                                '<br />School hours: ' + v.school_hours +
+                                '<br />Graduation rate: ' + v.graduation_rate_mean + '%' +
+                                '</p>'+
+                                '</div>'+
+                                '</div>';
+                            console.log(v.school_longitude);
+                            console.log(v.long_name);
+                            var infowindow = new google.maps.InfoWindow({
+                              content: contentString
+                            });
+                            var image = 'markers/m12.ico';
+                            var mymarker = new google.maps.Marker({
+                              position: {lat: parseFloat(v.school_latitude), lng: parseFloat(v.school_longitude)},
+                              map: mymap,
+                              title: v.long_name,
+                              icon: image
+                            });
+                            markers.push(mymarker);
+                            
+                            console.log(v);
+                                mymarker.addListener('click', function() {
+                                infowindow.open(mymap, mymarker);
+                            });
+                            $( "#schoolList" ).append( '<p>'+ v.long_name +'</p>');
+                            $( "#schoolList" ).append( '<hr class="mdc-list-divider">');
+                        });
+                    });
+                }
+            });
+        });
+        
+            
+            
+            
+        </script>
+        
+        <script async defer
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDBDZX0dgSkS3q8veDa9Uu4etKoz1J0q58&callback=initMap">
+    </script>
+    
+    
     </body>
 
 </html>
