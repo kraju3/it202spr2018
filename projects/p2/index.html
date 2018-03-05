@@ -2,6 +2,31 @@
 <html>
     <style>
     
+         body {
+          width: 100%;
+          height: 100vh;
+          margin: 0px;
+        }
+        .pg1 {
+              background: #111;
+              height: 100%;
+              width: 100%;
+              background: url(school.jpeg) no-repeat center fixed; 
+                background-size: cover;
+        }
+        .pg2 {
+              background: #111;
+              height: 100%;
+              width: 100%;
+              background: url(school.jpeg) no-repeat center fixed; 
+                background-size: cover;
+        }
+        .pg3 {
+              background: #111;
+              height: 100%;
+              width: 100%;
+        }
+    
     html,
       body,
       main {
@@ -17,9 +42,124 @@
         <title> </title>
     </head>
     
+    <header class="mdc-toolbar" id="the-toolbar">
+      <div class="mdc-toolbar__row">
+        <section class="mdc-toolbar__section mdc-toolbar__section--align-start">
+          <button id="drawerButton" class=" material-icons mdc-toolbar__menu-icon mdc-button mdc-button--unelevated big-round-corner-button mdc-ripple-upgraded" style="--mdc-ripple-fg-size:87.3844px; --mdc-ripple-fg-scale:1.83127; --mdc-ripple-fg-translate-start:51.3078px, -28.9734px; --mdc-ripple-fg-translate-end:29.1281px, -25.6922px;">
+                  menu
+            </button>
+          <span class="mdc-toolbar__title">Schools in Chicago,IL</span>
+        </section>
+        <section class="mdc-toolbar__section mdc-toolbar__section--align-end" role="toolbar">
+           <button id="backButton" class=" material-icons mdc-button mdc-button--unelevated big-round-corner-button mdc-ripple-upgraded" style="--mdc-ripple-fg-size:87.3844px; --mdc-ripple-fg-scale:1.83127; --mdc-ripple-fg-translate-start:51.3078px, -28.9734px; --mdc-ripple-fg-translate-end:29.1281px, -25.6922px;">
+                  arrow_back
+            </button>
+        </section>
+      </div>
+    </header>
     
-    <body>
+    
+    <body class= "mdc-typography">
+        <aside class="mdc-drawer mdc-drawer--temporary demo-drawer" style="">
+            <nav class="mdc-drawer__drawer">
+                <header class="mdc-drawer__header">
+                    <div class="mdc-drawer__header-content mdc-theme--text-primary-on-primary mdc-theme--primary-bg">
+                    Different type of schools
+                    </div>
+                </header>
+            <nav class="mdc-drawer__content mdc-list-group">
+            <div id="schoolList" class="mdc-list">
+            </div>
+            </nav>
+      </nav>
+    </aside>
+        <div class="pg1">
+            <div class="infoBox" >
+                <h2 class="mdc-typography--title">
+                  Hello!
+                </h2>
+                <p class="mdc-typography--body1">You could search up different school types of schools in Chicago,IL
+                .In the next page it will display it in a the map.
+                </p>
+                <button class="nxtButton mdc-button mdc-button--unelevated big-round-corner-button mdc-ripple-upgraded" style="--mdc-ripple-fg-size:87.3844px; --mdc-ripple-fg-scale:1.83127; --mdc-ripple-fg-translate-start:51.3078px, -28.9734px; --mdc-ripple-fg-translate-end:29.1281px, -25.6922px;">
+                  Next
+                </button>
+            </div>
+        </div>
+        <div class="pg2">
+        <div class="page2">    
+            <div class="informationBox2" >
+            <h2 class="mdc-typography--title">
+              School Type Selection
+            </h2>
+            <p class="mdc-typography--body1">Please select the school types that you want to have displayed below and press show map. (Please make sure to press the check, that you want to utilize)
+            </p>
+            <div class="mdc-menu-anchor" style="top: 50px; left: 0px;">
+            <button id="menu-button" class="material-icons mdc-button \ demo-button--normal">
+              menu
+            </button>
+
+            <div class="mdc-menu" style="position: absolute; transform-origin: center top 0px; left: 0px; top: 0px;" tabindex="-1" id="demo-menu">
+                <ul class="mdc-menu__items mdc-list" role="menu" aria-hidden="true">
+                <li class="mdc-list-item" role="menuitem" tabindex="0">
+                    <input type="checkbox" name="box1"/>Career Academy
+                </li>
+                <li class="mdc-list-item" role="menuitem" tabindex="-1">
+                    <input type="checkbox" name="box2"/>Charter 
+                </li>
+                <li class="mdc-list-item" role="menuitem" tabindex="-2">
+                    <input type="checkbox" name="box3"/>Citywide-option 
+                </li>
+                <li class="mdc-list-item" role="menuitem" tabindex="-3">
+                    <input type="checkbox" name="box4"/>Classical 
+                </li>
+                <li class="mdc-list-item" role="menuitem" tabindex="-4">
+                    <input type="checkbox" name="box5"/>Contract 
+                </li>
+                <li class="mdc-list-item" role="menuitem" tabindex="-5">
+                    <input type="checkbox" name="box6"/>Magnet
+                </li>
+                <li class="mdc-list-item" role="menuitem" tabindex="-6">
+                    <input type="checkbox" name="box7"/>Military Academy 
+                </li>
+                <li class="mdc-list-item" role="menuitem" tabindex="-7">
+                    <input type="checkbox" name="box8"/>Neighborhood 
+                </li>
+                <li class="mdc-list-item" role="menuitem" tabindex="-8" >
+                    <input type="checkbox" name="box9"/>Regional gifted center 
+                </li>
+                <li class="mdc-list-item" role="menuitem" tabindex="-9">
+                    <input type="checkbox" name="box10"/>Selective enrollment 
+                </li>
+                <li class="mdc-list-item" role="menuitem" tabindex="-10">
+                    <input type="checkbox" name="box11"/>Small 
+                </li>
+                <li class="mdc-list-item" role="menuitem" tabindex="-11">
+                    <input type="checkbox" name="box12"/>Special education 
+                </li>
+                </ul>
+            </div>
+          </div>
+            <button class="showMapButton mdc-button mdc-button--unelevated big-round-corner-button mdc-ripple-upgraded" style="--mdc-ripple-fg-size:87.3844px; --mdc-ripple-fg-scale:1.83127; --mdc-ripple-fg-translate-start:51.3078px, -28.9734px; --mdc-ripple-fg-translate-end:29.1281px, -25.6922px;">
+                  Show
+            </button>
+        </div>
+    </div>
+    </div>
+    
+    <div class="pg3">
         
+        <div id="map"></div>
+        
+    </div>
+        
+        
+        
+        
+        
+    
+    
+    <script src="node_modules/material-components-web/dist/material-components-web.js"></script>
     </body>
 
 </html>
