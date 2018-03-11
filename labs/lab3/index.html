@@ -25,10 +25,32 @@
       var player = {x: 75, y: 110, color:"green", radius: 25}; 
       
       
+      function gameGraphics()
+      {
+        background_image = new Image();
+        background_image.src = 'background.jpg';
+        ctx.drawImage(background_image, 0, 0);
+      }
+      
+      var harmImage = new Image();
+      harmImage.src = 'harm.png';
+      
+      var playerImage = new Image();
+      playerImage.src = 'player.png';
+ 
+      var benefitImage = new Image();
+      benefitImage.src = 'benefit.png';
+ 
+      var harmCenterX, harmCenterY, benefitCenterX, benefitCenterY, playerCenterX, playerCenterY; 
+      
+      gameGraphics();
+      
+      
       function draw() {
         
         
         ctx.clearRect(0,0,c.width,c.height);
+        gameGraphics();
         
         ctx.font = "8px Times verdana";
         ctx.fillText("Lives: " + game.livesLeft + " Score: " + game.score,10,50);
