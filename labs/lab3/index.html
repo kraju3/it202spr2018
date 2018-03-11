@@ -28,7 +28,7 @@
       function gameGraphics()
       {
         background_image = new Image();
-        background_image.src = 'background.jpg';
+        background_image.src = 'background1.jpg';
         ctx.drawImage(background_image, 0, 0);
       }
       
@@ -71,21 +71,13 @@
           benefit.y = Math.floor((Math.random() * c.height) + 1);
         }
         
-        ctx.fillStyle = benefit.color;
-        ctx.beginPath();
-        ctx.arc(benefit.x,benefit.y,benefit.radius,0,2*Math.PI);
-        ctx.fill();
         
-        ctx.fillStyle = harm.color;
-        ctx.beginPath();
-        ctx.arc(harm.x,harm.y,harm.radius,0,2*Math.PI);
-        ctx.fill();
+        ctx.drawImage(benefitImage, benefit.x, benefit.y);
         
-        //draw player
-        ctx.fillStyle = player.color;
-        ctx.beginPath();
-        ctx.arc(player.x,player.y,player.radius,0,2*Math.PI);
-        ctx.fill();
+        ctx.drawImage(harmImage, harm.x, harm.y);
+        
+  
+        ctx.drawImage(playerImage, player.x, player.y);
         
         
         var dx = player.x - harm.x;
