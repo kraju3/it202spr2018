@@ -1,0 +1,8 @@
+<script>
+    
+    var db = new Dexie("AppDB");
+    db.version(1).stores({
+    Restaurants: "++id, name, cuisine, ++tags",
+        
+    });
+</script>
