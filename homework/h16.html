@@ -1,30 +1,26 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<script src="https://unpkg.com/dexie@latest/dist/dexie.js"></script>
-    
-<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 </head>
 
-
 <body>
-<div id="btn">
-    <button class="mdc-button">
-      <i class="material-icons mdc-button__icon">favorite</i>
+<div>
+    <button  id ="btn">
       Click for Restaurants
     </button>
 </div>
 
 <div id="results"></div> 
+</body>
 
-    
 
-
+<script src="https://unpkg.com/dexie@latest/dist/dexie.js"></script>
+<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
 
 <script>
+
 $("#btn").click(function() {
+    $("#results").empty();
     
     var db = new Dexie("AppDB");
     db.version(1).stores({
@@ -32,19 +28,17 @@ $("#btn").click(function() {
         
     });
     
-    db.restaurants.bulkAdd({name: "Pad Thai", cuisine: "Thai"},
-    {name: "Dragon Palace", cuisine: "Chineese"},
-    {name: "Taj Mahal", cuisine: "Indian"});
-    
-    var next=db.restaurants.where('cuisine').noneOf([1]);
-    
-    $("#results").append(next);
-    $(next).show()
-    
+    db.restaurants.add({name: "Pad Thai", cuisine: "Thai"});
+    db.restaurants.add({name: "Dragon Palace", cuisine: "Chineese"});
+    db.restaurants.add({name: "Taj Mahal", cuisine: "Indian"});
+               
+    db.restaurants.where('cuisine').noneOf(['Thai']).each(function(restaurants) {
+    $("#results").append('<p> Name: ' + restaurants.name + ", Cuisine: " + restaurants.cuisine + '</p>');
+    });
  });
 
-    
-    
 </script>
-</body>
+
+</html>
+
 
