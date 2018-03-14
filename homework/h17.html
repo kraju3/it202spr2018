@@ -6,7 +6,7 @@
 
 <body>
     <div>
-        <img src="http://hdbackgroundspic.com/wp-content/uploads/2017/02/awesome-bridge-natural-image.jpg"  style="width:500px;height:600px;">
+        <img src="h17.png"  style="width:500px;height:600px;">
     </div>
 
 </body>
@@ -14,10 +14,13 @@
 <script>
     
    caches.open('test-cache').then(function(cache) {
-       cache.addAll("http://hdbackgroundspic.com/wp-content/uploads/2017/02/awesome-bridge-natural-image.jpg","https://kraju3.github.io/it202spr2018/homework/h17.html");
+    cache.addAll(["https://preview.c9users.io/kraju3/it202spring2018/homework/h17.html?_c9_id=livepreview2&_c9_host=https://ide.c9.io","h17.png"])
+        .then(function() { 
+      // Cached!
+         });
+
+    cache.keys().then(function(cachedRequests) { 
+    console.log(cachedRequests); // [Request, Request]
     });
-    
-    caches.keys().then(function(cacheKeys) { 
-    console.log(cacheKeys); // ex: ["test-cache"]
-    });
+});
 </script>
