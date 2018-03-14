@@ -5,10 +5,19 @@
 </head>
 
 <body>
+    <div>
+        <img src="http://hdbackgroundspic.com/wp-content/uploads/2017/02/awesome-bridge-natural-image.jpg"  style="width:500px;height:600px;">
+    </div>
 
 </body>
 
 <script>
     
-    cache.add
+   caches.open('test-cache').then(function(cache) {
+       cache.addAll("http://hdbackgroundspic.com/wp-content/uploads/2017/02/awesome-bridge-natural-image.jpg","https://kraju3.github.io/it202spr2018/homework/h17.html")
+    });
+    
+    caches.keys().then(function(cacheKeys) { 
+    console.log(cacheKeys); // ex: ["test-cache"]
+    });
 </script>
