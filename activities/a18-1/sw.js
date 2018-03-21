@@ -6,7 +6,7 @@ self.addEventListener('install', function(event) {
 
 self.addEventListener('activate', function(event) {
  
-       console.log("Title");
+       console.log('Event');
      
 });
 
@@ -29,4 +29,5 @@ self.addEventListener('fetch', function(e) {
       })
     );
 });
+
 

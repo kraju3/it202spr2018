@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title> </title>
+    </head>
+    <body>
+    <div id='template'></div>    
+    <script
+        src="https://code.jquery.com/jquery-3.3.1.min.js"
+        integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+        crossorigin="anonymous">
+    </script>    
+    <script>
+        $("#search").hide();
+        
+        
+        $.get("https://data.cityofchicago.org/resource/tt4n-kn4t.json?full_or_part_time=F&department=CITY COUNCIL")
+        .done(function(response) {
+                console.log(response);
+            $.each(response, function(i, v) {
+                var name = v.name;
+                var job = v.job_titles;
+                var content = "Name: " + name + " Job Title: " + job;
+              
+            });
+        });
+        $("#template").show();
+    </script>    
+    </body>
+</html>
