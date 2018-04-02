@@ -51,16 +51,19 @@
     var key = selected.value;
     var label = selected.textContent;
     // TODO init the app.selectedCities array here
+      if (!app.selectedCities) {
+      app.selectedCities = [];
+    }
     app.getForecast(key, label);
-    // TODO push the selected city to the array and save here
+    app.selectedCities.push({key: key, label: label});
+    app.saveSelectedCities();
     app.toggleAddDialog(false);
   });
-
+  
   document.getElementById('butAddCancel').addEventListener('click', function() {
-    // Close the add new city dialog
+    // Close the add new city box
     app.toggleAddDialog(false);
   });
-
 
   /*****************************************************************************
    *
@@ -166,6 +169,20 @@
     var url = 'https://query.yahooapis.com/v1/public/yql?format=json&q=' +
         statement;
     // TODO add cache logic here
+    if ('caches' in window) {
+	      caches.match(url).then(function(response) {
+	        if (response) {
+	          response.json().then(function updateFromCache(json) {
+	            var results = json.query.results;
+	            results.key = key;
+	            results.label = label;
+	            results.created = json.query.created;
+	            app.updateForecastCard(results);
+	          });
+	        }
+	      });
+	    }
+
 
     // Fetch the latest data.
     var request = new XMLHttpRequest();
@@ -197,6 +214,10 @@
   };
 
   // TODO add saveSelectedCities function here
+  app.saveSelectedCities = function() {
+    var selectedCities = JSON.stringify(app.selectedCities);
+    localStorage.selectedCities = selectedCities;
+  };
 
   app.getIconClass = function(weatherCode) {
     // Weather codes: https://developer.yahoo.com/weather/documentation.html#codes
@@ -308,4 +329,12 @@
   // TODO add startup code here
 
   // TODO add service worker code here
+  
+  app.selectedCities = localStorage.selectedCities;
+  if (app.selectedCities) {
+    app.selectedCities = JSON.parse(app.selectedCities);
+    app.selectedCities.forEach(function(city) {
+      app.getForecast(city.key, city.label);
+    });
+  } else {
 })();
