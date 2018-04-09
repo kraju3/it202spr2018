@@ -53,6 +53,10 @@
                     var utter = new SpeechSynthesisUtterance("Collision");
                     utter.voice = synth.getVoices()[12];
                     synth.speak(utter);
+                    
+                    // Reset the players position to initial starting point
+                    player.x = c.width/2;
+                    player.y = c.height/2;
                 }
                 window.requestAnimationFrame(draw);
             }
@@ -61,6 +65,26 @@
             // as part of your development process, the first step
             //   is to output the values to the screen so that you understand what's happening
             //https://developers.google.com/web/fundamentals/native-hardware/device-orientation/
+            
+            window.addEventListener('deviceorientation',function (event){
+                
+                var y = event.beta;
+                var x = event.gamma;
+                var maxX = $(window).width();
+                var maxY = $(window).height();
+                if (y > 90) { y = 90 };
+                if (y < -90) { y = -90 };
+                console.log(y);
+                console.log(x);
+                if ((player.x + x) < maxX) {
+                    player.x += x;
+                }
+                if ((player.y + y) < maxY) {
+                    player.y += y;
+                }
+            
+            });
+            
             $(document).keydown(function(e) {
                 switch (e.which) {
                     case 37: // left
