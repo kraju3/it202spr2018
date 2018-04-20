@@ -1,10 +1,11 @@
 <!DOCTYPE html>
-<html>
-
-
+<html lang="en">
 <head>
-    <title></title>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    
+    <link rel="manifest" href="/manifest.json">
+    <meta name="mobile-web-app-capable" content="yes">
+    
+     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     
         <script src="https://unpkg.com/dexie@latest/dist/dexie.js"></script>
     
@@ -20,21 +21,40 @@
         <link rel="stylesheet"
               href="https://unpkg.com/material-components-web@0.9.1/dist/material-components-web.min.css"> 
         
-
-        <link rel="stylesheet" href="app.css">
-        
         <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-    <style>
-        body {
-            background-color: gray;
-        }
-    </style>
+    
+    <link rel="stylesheet" href="app.css">
+    
+     <link rel="stylesheet" href="/assets/drawer/drawer.css">
 
 </head>
 
 <body>
+  <header id="shrine-header"
+        class="mdc-toolbar mdc-toolbar--fixed mdc-theme--text-primary-on-background">
+  <div class="mdc-toolbar__row">
+    <section class="mdc-toolbar__section mdc-toolbar__section--align-start">
+      <a id="shrine-nav-icon" class="material-icons" href="#"
+         aria-label="Click to show the navigation menu"
+         aria-controls="shrine-nav-menu">menu</a>
+      <h1 id="shrine-logo"          
+          class="mdc-toolbar__title"><span>Shrine</span></h1>
+    </section>
+  </div>
+</header>
+    
+    <script>
+        if ('serviceWorker' in navigator) {
+            navigator.serviceWorker.register('sw.js');
+        };
+    </script>
+    
+    <script>mdc.autoInit()</script>
 
 
 </body>
 
 </html>
+
+
+

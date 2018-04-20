@@ -1,0 +1,40 @@
+#shrine-header {
+  background-color: var(--mdc-theme-background);
+  color: var(--mdc-theme-text-primary-on-background);
+}
+
+#shrine-header .mdc-toolbar__section {
+  overflow: visible;
+}
+
+#shrine-logo {
+  background: url(assets/logo.png) left center no-repeat;
+  background-size: contain;
+  width: 100%;
+  height: 100%;
+}
+
+/* Hide actual text for screen readers */
+#shrine-logo > span {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0,0,0,0);
+  border: 0;
+}
+
+#shrine-nav-icon {
+  width: 24px;
+  height: 24px;
+  margin-right: 40px;
+  text-decoration: none;
+}
+
+#shrine-nav-icon:visited,
+#shrine-nav-icon:active,
+#shrine-nav-icon:focus {
+  color: var(--mdc-theme-text-primary-on-background);
+}
