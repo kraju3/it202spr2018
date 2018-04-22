@@ -6,11 +6,12 @@ html, body {
 
 #showSearch {
     font: italic bold 12px/30px Georgia, serif;
+    color:white;
 }
 
 #showMap {
 font: italic bold 12px/30px Georgia, serif;
-color: white;
+color: black;
 }
 
 #showList {
@@ -19,7 +20,7 @@ color: white;
   color:white;
 }
 
-.navbar-header{
-  background-color: blue;
+.container-fluid{
+  background-color:#800080;
   
 }
