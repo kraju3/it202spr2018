@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     
-    <link rel="manifest" href="/manifest.json">
+    
     <meta name="mobile-web-app-capable" content="yes">
     
      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
@@ -26,7 +26,7 @@
     <link rel="stylesheet" href="app.css">
     <style>
                  #map {
-            height: 400px;
+            height: 600px;
             width: 100%;
            }
             .loader {
@@ -43,10 +43,18 @@
             }
         </style>
            
-    
+    <link rel="manifest" href="./manifest.json">
     
         <script src="./app.js" async></script> 
     
+      <!-- Add to home screen for Safari on iOS -->
+        <meta name="apple-mobile-web-app-capable" content="yes">
+        <meta name="apple-mobile-web-app-status-bar-style" content="black">
+        <meta name="apple-mobile-web-app-title" content="EventsNearYou">
+        <link rel="apple-touch-icon" href="./upcoming.png">
+        
+        <meta name="msapplication-TileImage" content="./upcoming.png">
+        <meta name="msapplication-TileColor" content="#2F3BA2">
 </head>
 
 
@@ -57,11 +65,10 @@
         <nav class="navbar navbar-inverse">
           <div class="container-fluid">
             <div class="navbar-header">
-              <a class="navbar-brand" href="#"><img class="img-responsive2"       
-       src="http://www.kentish.tas.gov.au/webdata/resources/images/events-banner-v2.jpg" style=height:100%;display:inline-block;"> </a>
+           <a class="navbar-brand" href="#">Events</a>
             </div>
             <ul class="nav navbar-nav">
-              <li class="active"><a href="#"></a></li>
+              <!--<li class="active"><a href="#"></a></li>-->
               <li id = "showSearch"><a href="#">Search</a></li>
               <li id= "showMap"><a href="#">Map</a></li>
               <li id = "showList"><a href="#">Search Result</a></li>
@@ -73,7 +80,7 @@
           <div id = "searchScreen" class="jumbotron">
             <h1 style = text-align:center >Search for Events!</h1>
             <button width: 500x type="button" class="btn-block btn btn-primary btn-lg " id="myBtn">Explore Now!
-              <i class="material-icons mdc-button__icon">add_location</i>
+              <i class="material-icons mdc-button__icon">description</i>
             </button>
         
 

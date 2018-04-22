@@ -20,7 +20,27 @@ color: black;
   color:white;
 }
 
+.navbar-inverse{
+    background-color:#800080;
+}
+#myBtn{
+   background-color:#800080;
+}
+
+
 .container-fluid{
   background-color:#800080;
   
+}
+
+#content {
+  background-color:#800080;
+}
+
+.firstHeading {
+  color:white;
+}
+
+#bodyContent{
+  color:white;
 }
