@@ -4,33 +4,18 @@ html, body {
   background-color: #f2f2f2;
 }
 
-#showSearch {
-    font: italic bold 12px/30px Georgia, serif;
-    color:white;
-}
 
-#showMap {
-font: italic bold 12px/30px Georgia, serif;
-color: black;
-}
-
-#showList {
-  
-  font: italic bold 12px/30px Georgia, serif;
-  color:white;
-}
-
-.navbar-inverse{
+ .mdc-toolbar__title{
+   font-family: Gill Sans Extrabold, sans-serif;
+   font-size: large
+ }
+ 
+ .mdc-toolbar__row{
     background-color:#800080;
-}
-#myBtn{
+ }
+   
+ #myBtn{
    background-color:#800080;
-}
-
-
-.container-fluid{
-  background-color:#800080;
-  
 }
 
 #content {

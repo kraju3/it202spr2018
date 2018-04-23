@@ -62,23 +62,27 @@
 
   <body>
         
-        <nav class="navbar navbar-inverse">
-          <div class="container-fluid">
-            <div class="navbar-header">
-           <a class="navbar-brand" href="#">Events</a>
-            </div>
-            <ul class="nav navbar-nav">
-              <!--<li class="active"><a href="#"></a></li>-->
-              <li id = "showSearch"><a href="#">Search</a></li>
-              <li id= "showMap"><a href="#">Map</a></li>
-              <li id = "showList"><a href="#">Search Result</a></li>
-            </ul>
-          </div>
-        </nav>
+      <header class="mdc-toolbar">
+      <div class="mdc-toolbar__row">
+        <section class="mdc-toolbar__section mdc-toolbar__section--align-start">
+        
+          <span class="mdc-toolbar__title">Events</span>
+        </section>
+        <section class="mdc-toolbar__section mdc-toolbar__section--align-end" role="toolbar">
+              <a href="#" id = "showSearch" class="material-icons mdc-toolbar__icon" aria-label="Search" alt="Search">search</a>
+              <a href="#" id = "showList" class="material-icons mdc-toolbar__icon" aria-label="Results" alt="Results">view_list</a>
+              <a href="#" id = "showMap" class="material-icons mdc-toolbar__icon" aria-label="Map" alt="Map Results">map</a>
+              
+            
+        </section>
+      </div>
+    </header>
+          
+        
         
         <div class = "container ">
           <div id = "searchScreen" class="jumbotron">
-            <h1 style = text-align:center >Search for Events!</h1>
+            <h1 style = text-align:center >Find out what's happening near your location</h1></h1>
             <button width: 500x type="button" class="btn-block btn btn-primary btn-lg " id="myBtn">Explore Now!
               <i class="material-icons mdc-button__icon">description</i>
             </button>
@@ -314,20 +318,14 @@
         </script>
         
         <div id="card" class="mdc-card hidden">
-        <div class="mdc-card__media mdc-card__media--square">
-  
-          <section class="mdc-card__primary">
+        <section class="mdc-card__primary">
+          <div class="mdc-card__media mdc-card__media--16-9"></div>
             <h1 class="mdc-card__title mdc-card__title--large">Title goes here</h1>
             <h2 class="mdc-card__subtitle">Subtitle here</h2>
           </section>
           
         </div>
-          <section class="mdc-card__supporting-text">
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-            tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
-            veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
-            commodo consequat.
-          </section>
+
           <section class="mdc-card__actions">
             <!--<button id="btn1" onclick="#" href="#" class="mdc-button mdc-button--compact mdc-card__action">Action 1</button>-->
             <!--<button id="btn2" class="mdc-button mdc-button--compact mdc-card__action" >Action 2</button>-->

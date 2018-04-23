@@ -7,30 +7,27 @@
     <link
       rel="stylesheet"
       href="https://unpkg.com/material-components-web@0.9.1/dist/material-components-web.min.css">
-  
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 </head>
 
 
   <body>
-      <header class="mdc-toolbar">
-  <div class="mdc-toolbar__row">
-    <section class="mdc-toolbar__section mdc-toolbar__section--align-start">
-      <a href="#" class="material-icons mdc-toolbar__menu-icon">menu</a>
-      <span class="mdc-toolbar__title">NavBar</span>
-    </section>
-  </div>
+<header class="mdc-toolbar">
+      <div class="mdc-toolbar__row">
+        <section class="mdc-toolbar__section mdc-toolbar__section--align-start">
+        
+          <span class="mdc-toolbar__title">Title</span>
+        </section>
+        <section class="mdc-toolbar__section mdc-toolbar__section--align-end" role="toolbar">
+         
+              <a href="#" id = "showSearch" class="material-icons mdc-toolbar__icon" aria-label="Find" alt="Find">file_download</a>
+              <a href="#" id = "showList" class="material-icons mdc-toolbar__icon" aria-label="Search Results" alt="Print this page">print</a>
+              <a href="#" id= "showMap" class="mdc-toolbar__icon" aria-label="Map" alt="Map">
+            
+        </section>
+      </div>
     </header>
-    
-    <div class="mdc-snackbar"
-     aria-live="assertive"
-     aria-atomic="true"
-     aria-hidden="true">
-  <div class="mdc-snackbar__text"></div>
-  <div class="mdc-snackbar__action-wrapper">
-    <button type="button" class="mdc-snackbar__action-button"></button>
-  </div>
-</div>
-  
+
 
 
   </body>
