@@ -25,6 +25,20 @@ html, body {
 .firstHeading {
   color:white;
 }
+#list{
+    
+    background-color:transparent;
+}
+
+.mdc-card{
+    background-color:white;
+}
+.mdc-card_title{
+    
+    font-family: Courier, Monaco, monospace;
+    color:black;
+}
+
 
 #bodyContent{
   color:white;

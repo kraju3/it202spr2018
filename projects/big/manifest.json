@@ -1,6 +1,6 @@
 
 {
-  "name": "EventsNearYou",
+  "name": "StayActive",
   "short_name": "Events",
   "icons": [{
     "src": "./upcoming.png",
