@@ -16,19 +16,32 @@
       <div class="mdc-toolbar__row">
         <section class="mdc-toolbar__section mdc-toolbar__section--align-start">
         
-          <span class="mdc-toolbar__title">Title</span>
+          <span class="mdc-toolbar__title">Events</span>
         </section>
         <section class="mdc-toolbar__section mdc-toolbar__section--align-end" role="toolbar">
          
-              <a href="#" id = "showSearch" class="material-icons mdc-toolbar__icon" aria-label="Find" alt="Find">file_download</a>
-              <a href="#" id = "showList" class="material-icons mdc-toolbar__icon" aria-label="Search Results" alt="Print this page">print</a>
-              <a href="#" id= "showMap" class="mdc-toolbar__icon" aria-label="Map" alt="Map">
+              <a href="#" id = "showSearch" class="material-icons mdc-toolbar__icon" aria-label="Search" alt="Search">search</a>
+              <a href="#" id = "showList" class="material-icons mdc-toolbar__icon" aria-label="Map" alt="Map Results">map</a>
+              
             
         </section>
       </div>
     </header>
 
-
+<nav class="navbar navbar-inverse">
+          <div class="container-fluid">
+            <div class="navbar-header">
+           <a class="navbar-brand" href="#">Events</a>
+            </div>
+            <ul class="nav navbar-nav">
+              <li id = "showSearch"><a href="#">Search</a></li>
+              <li id = "showList"><a href="#">Search Result</a></li>
+              <li id= "showMap"><a href="#">Map</a></li>
+            </ul>
+            <form class="form-inline my-2 my-lg-0">
+      <input class="form-control mr-sm-2" type="search" placeholder="Search">
+      <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+    </form>
 
   </body>
 </html>
