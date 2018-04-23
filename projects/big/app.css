@@ -1,0 +1,31 @@
+
+html, body {
+  height: 100%;
+  background-color: #f2f2f2;
+}
+
+
+ .mdc-toolbar__title{
+   font-family: Gill Sans Extrabold, sans-serif;
+   font-size: large
+ }
+ 
+ .mdc-toolbar__row{
+    background-color:#800080;
+ }
+   
+ #myBtn{
+   background-color:#800080;
+}
+
+#content {
+  background-color:#800080;
+}
+
+.firstHeading {
+  color:white;
+}
+
+#bodyContent{
+  color:white;
+}
