@@ -42,7 +42,7 @@
       });
      
      function getImageData(){
-        var requestBody = {"requests":[
+        requestBody = {"requests":[
             {
               "image":{
                 "content": canvas.toDataURL().split(",")[1]
@@ -56,7 +56,7 @@
             }
         ]
         };
-        var clone, faceCount;
+        var data;
         
         $.ajax({
             method: "POST",
@@ -71,51 +71,7 @@
            else
            {
             console.log(response);
-            console.log(response.responses[0].faceAnnotations[0].boundingPoly.vertices);
-            clone = $("#specificContent").clone();
-            $(clone).html("<canvas id='canvas3" + count +"' width=320 height=240></canvas>")
-            $("#contentBody").prepend(clone);
-            canvas3.push(document.getElementById('canvas3' + count));
-            canvas3[count].width = response.responses[0].faceAnnotations[0].boundingPoly.vertices[1].x - response.responses[0].faceAnnotations[0].boundingPoly.vertices[0].x;
-            canvas3[count].height = response.responses[0].faceAnnotations[0].boundingPoly.vertices[2].y - response.responses[0].faceAnnotations[0].boundingPoly.vertices[0].y;
-            context3[count] = canvas3[count].getContext('2d');
-            context3[count].drawImage(canvas, response.responses[0].faceAnnotations[0].boundingPoly.vertices[0].x, response.responses[0].faceAnnotations[0].boundingPoly.vertices[0].y, response.responses[0].faceAnnotations[0].boundingPoly.vertices[1].x ,response.responses[0].faceAnnotations[0].boundingPoly.vertices[2].y, 0, 0, response.responses[0].faceAnnotations[0].boundingPoly.vertices[1].x - response.responses[0].faceAnnotations[0].boundingPoly.vertices[0].x, response.responses[0].faceAnnotations[0].boundingPoly.vertices[2].y - response.responses[0].faceAnnotations[0].boundingPoly.vertices[0].y);
-           }
-            
-         });
-         
-         requestBody = {"requests":[
-            {
-              "image":{
-                "content": canvas.toDataURL().split(",")[1]
-              },
-              "features":[
-                {
-                  "type":"LABEL_DETECTION",
-                  "maxResults":20
-                }
-              ]
-            }
-        ]
-        };
-         
-         $.ajax({
-            method: "POST",
-            contentType: "application/json",
-            url: "https://vision.googleapis.com/v1/images:annotate?key=AIzaSyB8kzgu2oUoMsiGdHqTW2E0txYFR0Vhh68",
-            data: JSON.stringify(requestBody)
-        }) 
-         .done(function(response) {
-            console.log(response);
-            var i;
-            
-            for(i = 0; i < response.responses[0].labelAnnotations.length; i++)
-            {
-              clone.append("Description: " + response.responses[0].labelAnnotations[i].description + " Score: " + response.responses[0].labelAnnotations[i].score )
-            }
-            count++;
-         });
-        }
+            data=response;
         </script>
     </body>
 </html>
