@@ -2,6 +2,9 @@
 <html>
     <head>
         <title>Project 5</title>
+       
+             <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    
     </head>
     <body>
      <video id="player" controls autoplay></video>
@@ -10,25 +13,22 @@
      <canvas id="collageCanvas" width="320" height="240"></canvas>
      <canvas id="frameCanvas" width="320" height="240"></canvas>
      <div id="imageData"></div>
-        <script
-            src="https://code.jquery.com/jquery-3.3.1.min.js"
-            integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
-            crossorigin="anonymous">
-        </script>
+
         <script>
-       const player = document.getElementById('player');
-       const canvas = document.getElementById('canvas');
-       const context = canvas.getContext('2d');
-       const captureButton = document.getElementById('capture');
-       var canvas3 = [];
-       var context3 = [];
-       var count = 0;
+    const canvas = document.getElementById('canvas');
+    const context = canvas.getContext('2d');
+    const collageCanvas = document.getElementById('collageCanvas');
+    const collageContext = collageCanvas.getContext('2d');
+    const captureButton = document.getElementById('capture');
+    var requestBody, nextX = 0, nextY = 0;
+    collageCanvas.width = window.innerWidth;
+    collageCanvas.height = 300;
     
       const constraints = {
         video: true,
       };
     
-      $("#hidden").hide();
+    
       
       captureButton.addEventListener('click', () => {
         context.drawImage(player, 0, 0, canvas.width, canvas.height);
