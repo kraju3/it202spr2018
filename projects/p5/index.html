@@ -65,11 +65,7 @@
             data :JSON.stringify(requestBody)
         })
         .done(function(response) {
-            if (!$.trim(response.responses[0].faceAnnotations)){
-             alert("face not found");
-           }
-           else
-           {
+         
             //console.log(response);
             var data=response;
                       var facevertex = response.responses[0].faceAnnotations[0].boundingPoly.vertices;
@@ -102,7 +98,15 @@
 	                  collageContext.drawImage(canvas, srcx, srcy, fWidth, fHeight, nextX, nextY, fWidth, fHeight); 
 	                  nextX += fWidth;
 	                  
-           })
+        if (doFaceCapture) {
+                    getImageData('FACE_DETECTION');
+                  }
+                  
+                });
+        
+          }
+    
+ 
 
 
 	                  
