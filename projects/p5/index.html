@@ -66,15 +66,47 @@
         })
         .done(function(response) {
             if (!$.trim(response.responses[0].faceAnnotations)){
-             alert("No face has been found");
+             alert("face not found");
            }
            else
            {
             //console.log(response);
             var data=response;
-            var left = facevertex[0];
+                      var facevertex = response.responses[0].faceAnnotations[0].boundingPoly.vertices;
+                      //corner
+                      var left = facevertex[0];
 	                  var right = facevertex[2];
-	                  console.log(right, right.x, left, left.x);
+	                  //console.log(right, right.x, left, left.x);
+	                  
+	                  	
+                      var fWidth = right.x - left.x;
+	                  var fHeight = right.y - left.y;
+	                  var srcx = left.x;
+	                  var srcy = left.y;
+	                  var dWidth = fWidth;
+	                  var dHeight = fHeight;
+	                  
+	                  //
+	                  if (nextX > collageCanvas.width) {
+	                    nextX = 0;
+	                    nextY += fHeight;
+	                  }
+	                  
+	                  if (nextY + fHeight > collageCanvas.height) {
+	                    var imgData=collageContext.getImageData(0,0,collageCanvas.width, collageCanvas.height);
+	
+	                    collageCanvas.height += fHeight;
+	                    collageContext.putImageData(imgData,0,0);
+	                  }                  
+	       
+	                  collageContext.drawImage(canvas, srcx, srcy, fWidth, fHeight, nextX, nextY, fWidth, fHeight); 
+	                  nextX += fWidth;
+	                  
+           })
+
+
+	                  
+	       
 
         </script>
     </body>
