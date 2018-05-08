@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+        <title>Part B</title>
+    </head>
+    <style>
+          #map {
+              height: 800px;
+            }
+    </style>
+    <body>
+        <div id="btntype">
+            <h1>Choose Hospital</h1>
+            <select id="clinictype">
+                <option value = "'STI Specialty Clinic'"> STI Specialty Clinic </option>
+                <option value = "'Mental Health Clinic'"> Mental Health Clinic </option>
+                <option value = "'WIC Clinic'"> WIC Clinic </option>
+            </select>
+            <br>
+            <br>
+            <button id="btn" class="btn btn-primary">Search</button>
+        </div>
+        <div id="map"></div>
+        <div id='list'></div>
+
+            
+        </div>
+         <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
+       
+    <script>
+    var url="https://data.cityofchicago.org/resource/t57k-za2y.json?clinic_type=<clinicType>"
+    function initMap(){
+        $("#btn").on("click",function(){
+            $("#list").empty();
+        })
+        $("#btn").on("click",function(){
+            $.get(url.replace("<clinicType>",$("#clinictype").val())
+            )
+            .done(function(response){
+                console.log(response)
+                var myCenter={lat:41.878,lng:-87.6298};
+                var map=new google.maps.Map(document.getElementById('map'),{
+                    zoom:12,
+                    center:myCenter
+                    });
+                $.each(response,function(i,v){
+                    var building=v.site_building;
+                    var address=v.street_address;
+                    var statecity=v.city+", "+v.state+" "+v.zip;
+                    var phone=v.phone_1;
+                    var hours=v.hours_of_operation;
+                    var clinictype=v.clinic_type;
+        
+                    var information= '<div class="list-group">'+
+  '<a href="#" class="list-group-item list-group-item-action flex-column align-items-start active">'+
+    '<div class="d-flex w-100 justify-content-between">'+
+      '<h5 class="mb-1">'+building+'</h5>'+
+      '<small>'+clinictype+'</small>'+
+    '</div>'+
+    '<p class="mb-1">'+address+'<br>'+statecity +'<br>'+'</p>'+
+    '<small>'+ "Phone: " + phone + '<br>'+"Hours of Operation: "+hours+'<br>'+'</small>'+
+  '</a>'
+                    $("#list").append(information);
+                            var contentString = '<div id = "content" style = "color:Black;">'+
+                                                '<div id = "siteNotice">'+
+                                                '</div>'+
+                                                '<h2 id = "firstHeading" class = "firstHeading">' + building + '</h2>' +
+                                                '<h3 id = " secondHeading" class = "secondHeading">' + address+ '</h3>' +
+                                                '<div id="bodyContent">' +
+                                                '<br>'+statecity +'<br>' +
+                                                '<br>' + "Phone: " + phone + '<br>'+"Hours of Operation: "+hours+'<br>'
+                                                '</div>';
+                                                '</div>';
+                            var infoWindow=new google.maps.InfoWindow({
+                                content: contentString
+                            });
+                var markers=new google.maps.Marker({
+                    position:{lat:parseFloat(response[i].latitude),lng:parseFloat(response[i].longitude)},
+                    map:map
+                })
+                markers.addListener('click',function(){
+                    infoWindow.open(map,markers);
+                     });
+                })    
+            })
+        })
+    }
+    
+    
+    </script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBGe_SZLKVCoEYoh5nVW-yBN6n-6JntgAY&callback=initMap"
+    async defer></script>
+    </body>
+</html>
+      
+    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAE_eYDF0ePJ1hi3v6SnlcIkyf0S5RfX5Q&callback=initMap"
+  type="text/javascript"></script>
+      
+</html>
