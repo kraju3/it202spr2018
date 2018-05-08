@@ -21,37 +21,21 @@
   
   </head>
   <body>
-      <body>
-        <div id="Search">
-            <h1>Choose Hospital</h1>
-            <select id="type">
-                <option value = "'WIC Clinic'"> WIC Clinic </option>
-                
-                <option value = "'Mental Health Clinic'"> Mental Health Clinic </option>
-                
-                <option value = "'STI Specialty Clinic'"> STI Specialty Clinic </option>
-            </select>
-            <br>
-            <br>
-            <button id="btn" class="btn btn-primary">Search</button>
-        </div>
-        
-      <div id="list">
-      <div class="list-group" id="template">
-      <a href="#" class="list-group-item list-group-item-action flex-column align-items-start active">
-    <div class="d-flex w-100 justify-content-between">
-      <h5 class="mb-1">List group item heading</h5>
-      <small>3 days ago</small>
-    </div>
-    <p class="mb-2">Donec id elit non mi porta gravida at eget metus. Maecenas sed diam eget risus varius blandit.</p>
-    <small>Donec id elit non mi porta.</small>
-  </a>
-  
-  
-</div>
-</div>
+     <div class="container">
+		<div class="input-group mb-3">
+		  <div class="input-group-prepend">
+		    <label class="input-group-text" for="inputGroupSelect01">Options</label>
+		  </div>
+		  <select class="custom-select" id="myselect">
+		    <option selected disabled>Choose ...</option>
+		    <option value="1">WIC Clinic</option>
+		    <option value="2">Mental Health Clinic</option>
+		    <option value="3">STI Specialty Clinic</option>
+		  </select>
+		</div>
+		<button id="searchBtn">Search</button>
 
-<div id="map"></div>
+<div id="map" class = hide></div>
    
   <script>
     var url="https://data.cityofchicago.org/resource/t57k-za2y.json?clinic_type=<clinicType>"
@@ -81,10 +65,10 @@
         var contentString = '<div id = "content" style = "color:Black;">'+
                                                 '<div id = "siteNotice">'+
                                                 '</div>'+
-                                                '<h2 id = "firstHeading" class = "firstHeading">' + name + '</h2>' +
-                                                '<h3 id = " secondHeading" class = "secondHeading">' + address+ '</h3>' +
+                                                '<h2 id = "firstHeading" class = "firstHeading">' + v.name + '</h2>' +
+                                                '<h3 id = " secondHeading" class = "secondHeading">' +v.address+ '</h3>' +
                                                 '<div id="bodyContent">' +
-                                                '<br>'+cityStateZip +'<br>' +
+                                                '<br>'+v.city +'<br>'+<br>'
                                                 '<br>' + "Phone: " + phone + '<br>'+"Hours of Operation: "+hours+'<br>'
                                                 '</div>';
                                                 '</div>';
