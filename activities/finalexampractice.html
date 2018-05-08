@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html class="mdc-typography">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Greeting App</title>
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/material-components-web@latest/dist/material-components-web.min.css">
+      
+    <style>
+      #template {display:none;}
+      #map {height: 400px;}
+    </style>
+  </head>
+  <body>
+
+    <h1>Your Name Here</h1>
+
+    <div id="cards">
+      <div class="mdc-card" id="template">
+        <section class="mdc-card__primary">
+          <h1 class="mdc-card__title mdc-card__title--large">Title goes here</h1>
+          <h2 class="mdc-card__subtitle">Subtitle here</h2>
+        </section>
+        <section class="mdc-card__supporting-text">
+          Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+          tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
+          veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
+          commodo consequat.
+        </section>
+        <section class="mdc-card__actions">
+          <button class="mdc-button mdc-button--compact mdc-card__action"><a id="searchLink" href="" target="_blank">Google Search</a></button>
+          
+        </section>
+      </div>     
+    </div>
+    <div id="map"></div>
+
+
+
+
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+      <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDCpr5xGgCLYC3um2sw0Me-cYRAot_qP5s"></script>
+    <script>
+      
+      
+      $(function() {
+           
+           /*  I've forced the map script to be loaded before the jQuery main function, 
+                so I can reference the Map class here
+              
+               I also need the map object available so that I can put markers on it even 
+                before the geolocation is determined and the callback executes
+                
+               In a production app, I'd want to handle the condition of the geolocation 
+                never returning a value
+           
+           */
+           
+           var map = new google.maps.Map(document.getElementById('map'));
+           
+           console.log('navigator');
+           
+          navigator.geolocation.getCurrentPosition(function(position) {
+            //  there are lots of methods for the map object 
+            //   https://developers.google.com/maps/documentation/javascript/3.exp/reference
+            map.setCenter ({lat: position.coords.latitude, lng: position.coords.longitude});
+            console.log(position);
+          });
+           
+
+   
+          
+          
+          
+          $.get("https://data.cityofchicago.org/resource/fpx9-pjqk.json?architect=Holabird and Roche ", function(response) {
+            
+            // call initMap, but pass the location of the first
+            //initMap({lat: parseFloat(response[0].latitude), lng: parseFloat(response[0].longitude)});
+            
+            
+            $.each(response, function(i,v) {
+              var clone = $("#template").clone();
+              clone.attr("id", v.id);
+              clone.find("section h1").text(v.landmark_name);
+              clone.find("section h2").text(v.address);
+              clone.find(".mdc-card__supporting-text").html("ID: " + v.id + "<br>" + "Architect: " + v.architect + "<br>" + "Date Built: " + v.date_built);
+              clone.find("#searchLink").attr("href","https://www.google.com/search?q=" + v.landmark_name + " " + v.address);
+              $("#cards").append(clone);
+            })
+            
+
+        });
+        
+
+        
+      });
+      
+      
+    </script>
+
+
+  </body>
+</html>

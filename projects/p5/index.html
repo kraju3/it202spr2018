@@ -14,7 +14,7 @@
      <canvas id="frameCanvas" width="320" height="240"></canvas>
      <div id="imageData"></div>
 
-        <script>
+    <script>
     const canvas = document.getElementById('canvas');
     const context = canvas.getContext('2d');
     const collageCanvas = document.getElementById('collageCanvas');
@@ -30,7 +30,7 @@
     
     
       
-      captureButton.addEventListener('click', () => {
+     captureButton.addEventListener('click', () => {
         context.drawImage(player, 0, 0, canvas.width, canvas.height);
         getImageData();
       });
@@ -107,11 +107,3 @@
           }
     
  
-
-
-	                  
-	       
-
-        </script>
-    </body>
-</html>
