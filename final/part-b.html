@@ -11,7 +11,7 @@
             }
     </style>
     <body>
-        <div id="btnch">
+        <div id="btntype">
             <h1>Choose Hospital</h1>
             <select id="clinictype">
                 <option value = "'STI Specialty Clinic'"> STI Specialty Clinic </option>
@@ -20,7 +20,7 @@
             </select>
             <br>
             <br>
-            <button id="btn" class="btn btn-primary">btnch</button>
+            <button id="btn" class="btn btn-primary">Search</button>
         </div>
         <div id="map"></div>
         <div id='list'></div>
@@ -56,14 +56,14 @@
                     var clinictype=v.clinic_type;
                     var ul="list-group";
                     var li="list-group-item";
-                    var card="<ul class="+ul+">"+
+                    var information="<ul class="+ul+">"+
                                  "<li class="+li+">"+building+"</li>"+
                                  "<li class="+li+">"+address+"</li>"+
                                  "<li class="+li+">"+statecity+"</li>"+
                                  "<li class="+li+">"+phone+"</li>"+
                                  "<li class="+li+">"+hours+"</li>"+
                                  "</ul>"+"<br>";
-                    $("#list").append(card);
+                    $("#list").append(information);
                             var contentString = '<div id = "content" style = "color:Black;">'+
                                                 '<div id = "siteNotice">'+
                                                 '</div>'+
