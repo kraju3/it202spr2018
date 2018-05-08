@@ -59,22 +59,51 @@
         $("#btn").on("click",function(){
             $.get(url.replace("<clinicType>",$("#type").val())
             )
+            .done(function(response){
+                console.log(response)
+                var myCenter={lat:41.878,lng:-87.6298};
+                var map=new google.maps.Map(document.getElementById('map'),{
+                    zoom:12,
+                    center:myCenter
+                    });
             
            
             
-        $.each(response, function(i,v) {
+            $.each(response, function(i,v) {
               var clone = $("template").clone();
               clone.attr("id", v.id);
-              clone.find("section h1").text(v.landmark_name);
-              clone.find("section h2").text(v.address);
-              clone.find(".mb-2").html("Clinic Address: " + v.street_address + "<br>" + "City,State Zip: " + v.architect + "<br>" + "Date Built: " + v.date_built);
+              clone.find(".mb-1").text(v.site_name);
+              
+              clone.find(".mb-2").html("Clinic Address: " + v.street_address + "<br>" + "City,State Zip: " + v.city+", "+v.state+" "+v.zip + "<br>" + "Clinic Phone: " +v.phone_1);
              
               $("#list").append(clone);
+            
+        var contentString = '<div id = "content" style = "color:Black;">'+
+                                                '<div id = "siteNotice">'+
+                                                '</div>'+
+                                                '<h2 id = "firstHeading" class = "firstHeading">' + name + '</h2>' +
+                                                '<h3 id = " secondHeading" class = "secondHeading">' + address+ '</h3>' +
+                                                '<div id="bodyContent">' +
+                                                '<br>'+cityStateZip +'<br>' +
+                                                '<br>' + "Phone: " + phone + '<br>'+"Hours of Operation: "+hours+'<br>'
+                                                '</div>';
+                                                '</div>';
+                            var infoWindow=new google.maps.InfoWindow({
+                                content: contentString
+                            });
+                var markers=new google.maps.Marker({
+                    position:{lat:parseFloat(response[i].latitude),lng:parseFloat(response[i].longitude)},
+                    map:map
+                })
+                markers.addListener('click',function(){
+                    infoWindow.open(map,markers);
+                     });
+                })    
             })
-        
+        })
+    }
 
-        
-      });
+     
       
    </script>
       
